@@ -1,4 +1,4 @@
-roomba-telepresence
+Telemba
 ===================
 
-world's cheapest telepresence robot project
+Telemba is the world's cheapest telepresence robot.
