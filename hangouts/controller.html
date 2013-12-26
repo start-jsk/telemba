@@ -111,7 +111,13 @@
 	<input type="password" class="login" id="pwd" style="width:55%" />
       </div>
     </div>
-
+    <div>
+      <form oninput="amount.value=rangeInput.value">
+	<span style="width:40%; text-align:center;">Servo:</span>
+        <input type="range" id="rangeInput" name="rangeInput" min="1500" max="5000">
+        <output name="amount" for="rangeInput">0</output>
+      </form>
+    </div>
     <script type="text/javascript">
       var t = new Messaging.Client("hackerspace.jp", 1883,
 				  "clientId");
@@ -263,6 +269,7 @@
 	  mouseSupport: true}) ;
       var prev_x=0 ;
       var prev_y=0 ;
+      var pwm_ref_prev = 0, pwm_ref_curr = 0;
 
       setInterval(function(){
 	  var x = -rc.deltaY();
@@ -293,8 +300,14 @@
 
 	      my_publish("drive "+v+" "+r+" ") ;
 	  }
-	  //my_subscribe() ;
-      }, 10/30 * 1000);
+	  //my_subscribe();
+	  // Send servo mesg
+	  pwm_ref_prev = pwm_ref_curr;
+	  pwm_ref_curr = document.getElementById('rangeInput').value;
+	  if (pwm_ref_curr != pwm_ref_prev) {
+	      sendServo(pwm_ref_curr);
+	  }
+      }, 1/10 * 1000);
 
       setInterval(function(){
 	  my_subscribe() ;
@@ -333,6 +346,9 @@
     }
     function sendStream() {
       my_publish("stream") ;
+    }
+    function sendServo(pwm_ref) {
+      my_publish("servo " + pwm_ref) ;
     }
   </script>
 
