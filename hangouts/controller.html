@@ -7,9 +7,9 @@
     <script type="text/javascript"
 	    src="https://hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
     <script type="text/javascript"
-	    src="https://rawgithub.com/start-jsk/telemba/master/hangouts/mqttws31.js"></script>
+	    src="https://rawgithub.com/start-jsk/telemba/check/hangouts/mqttws31.js"></script>
     <script type="text/javascript"
-	    src="https://rawgithub.com/start-jsk/telemba/master/hangouts/progress.js"></script>
+	    src="https://rawgithub.com/start-jsk/telemba/check/hangouts/progress.js"></script>
 
     <style>
       #container {
@@ -261,13 +261,9 @@
       //my_connect() ;
     </script>
 
-    <script type="text/javascript" src="https://rawgithub.com/start-jsk/telemba/master/hangouts/roombox-controller.js"></script>
+    <script type="text/javascript" src="https://rawgithub.com/start-jsk/telemba/check/hangouts/roombox-controller.js"></script>
     <script>
       //console.log( window.innerWidth + " nanoda" ) ;
-
-      var video_canvas = gapi.hangout.layout.getVideoCanavs();
-      video_canvas.setHeight(640);
-
       var rc = new RoomboxController({
 	  container: document.getElementById('container'),
 	  mouseSupport: true}) ;
