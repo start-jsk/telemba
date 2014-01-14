@@ -264,6 +264,10 @@
     <script type="text/javascript" src="https://rawgithub.com/start-jsk/telemba/master/hangouts/roombox-controller.js"></script>
     <script>
       //console.log( window.innerWidth + " nanoda" ) ;
+
+      var video_canvas = gapi.hangout.layout.getVideoCanavs();
+      video_canvas.setWidth(480);
+
       var rc = new RoomboxController({
 	  container: document.getElementById('container'),
 	  mouseSupport: true}) ;
