@@ -19,12 +19,12 @@ function init() {
             if (eventObj.isApiReady) {
 		location.href="https://rawgithub.com/start-jsk/telemba/check/hangouts/controller.html?" + gapi.hangout.getHangoutUrl() ;
             }
-            // var feed = gapi.hangout.layout.getDefaultVideoFeed();
-            // var canvas = gapi.hangout.layout.getVideoCanvas();
-            // canvas.setVideoFeed(feed);
-            // canvas.setWidth(300);
-            // canvas.setPosition(100, 100);
-            // canvas.setVisible(true);
+            var feed = gapi.hangout.layout.getDefaultVideoFeed();
+            var canvas = gapi.hangout.layout.getVideoCanvas();
+            canvas.setVideoFeed(feed);
+            canvas.setWidth(480);
+            canvas.setPosition(100, 100);
+            canvas.setVisible(true);
 	});
 }
 gadgets.util.registerOnLoadHandler(init);
