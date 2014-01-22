@@ -292,21 +292,29 @@
 	      prev_x = x ;
 	      prev_y = y ;
 	      var v;
-	      var w = Math.atan2 (y, x) / 3.14;
+	      var w;
 	      var r;
-	      v = Math.sqrt(x*x+y*y);
-	      if (x < 0) {
-		  if (y < 0) {
-		      r = -1;
-		  } else {
-		      r = 1;
-		  }
+              if ( x > 0 ){
+		w = Math.atan2 (y, x) / 3.14;
 	      } else {
-		  r = v/w;
-		  if (Math.abs(w) < 0.01){
+                w = Math.atan2 (y, -x) / 3.14;
+              }
+	      v = Math.sqrt(x*x+y*y);
+              console.log( "x="+x + "/" + "y=" + y ) ;
+              console.log( "v="+v + "/" + "w=" + w ) ;
+//	      if (x < 0) {
+//		  if (y < 0) {
+//		      r = -1;
+//		  } else {
+//		      r = 1;
+//		  }
+//	      } else {
+		  r = v/w/2;
+		  if (Math.abs(w) < 0.01 || Math.abs(Math.abs(w) -1) < 0.1){
 		      r = 0;
 		  }
-	      }
+//	      }
+              if ( x < 0 ) v *= -1 ;
 	      v = Math.round(v);
 	      r = Math.round(r);
 
