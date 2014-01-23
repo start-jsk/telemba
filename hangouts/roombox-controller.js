@@ -101,11 +101,15 @@ RoomboxController.prototype.get_velocity=function(){
 RoomboxController.prototype.get_rotation=function(){
     var x = this.deltaX() ;
     var y = -this.deltaY() ;
-    if ( x*x + y*y < 5 ){
+    if ( x*x + y*y < 10 ){
 	return 0 ;
-    } else {
-	return Math.atan2(x,y) ;
     }
+    // when it move backward
+    if (y < 0) {
+	return Math.atan2(x,y) - Math.PI ;
+    }
+    // when it move forward
+    return Math.atan2(x,y) ;
 }
 
 RoomboxController.prototype.up= function(){
