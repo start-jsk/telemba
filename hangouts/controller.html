@@ -7,9 +7,9 @@
     <script type="text/javascript"
 	    src="https://hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
     <script type="text/javascript"
-	    src="https://rawgithub.com/start-jsk/telemba/master/hangouts/mqttws31.js"></script>
+	    src="https://rawgithub.com/start-jsk/telemba/check/hangouts/mqttws31.js"></script>
     <script type="text/javascript"
-	    src="https://rawgithub.com/start-jsk/telemba/master/hangouts/progress.js"></script>
+	    src="https://rawgithub.com/start-jsk/telemba/check/hangouts/progress.js"></script>
 
     <style>
       #container {
@@ -77,17 +77,21 @@
     </style>
   </head>
   <body>
-
     <div id="container">
       <div id="result">topics</div>
       <div id="state"> </div>
       <div id="roomba" style="margin-top: 10px;">
 	<span id="roomba_connect"
 	      style="font-size: 15px; text-shadow: 2px 2px 2px gray">
-	  Roomba
+	  Roomba is missing
 	</span>
-	<span id="roomba_battery"
-	      style="position:relative; left: 70px; top: -15px; " />
+	<span id="roomba_battery" style="position:relative; left: 150px; top: -20px; " />
+      </div>
+      <div id="android">
+	<span id="android_connect" style="font-size: 15px; text-shadow: 2px 2px 2px gray">
+	  Android is missing
+	</span>
+	<span id="android_battery" style="position:relative; left: 150px; top: -20px; " />
       </div>
     </div>
     <div id="buttons" style="margin-left:5px;">
@@ -139,6 +143,12 @@
       battery_option["width"] = 100 ;
       battery_option["frm_bgc"] = "#333333" ;
       var battery_progress = new html5jp.progress("roomba_battery", battery_option);
+      var android_battery_option = new Object();
+      android_battery_option["to"] = 0 ;
+      android_battery_option["animation"] = 0 ;
+      android_battery_option["width"] = 100 ;
+      android_battery_option["frm_bgc"] = "#333333" ;
+      var android_battery_progress = new html5jp.progress("android_battery", android_battery_option);
 
       var usr = "";
       var pwd = "";
@@ -169,14 +179,21 @@
                       rc._draw_roomba(rc._stickEl,rc.roomba[rc.image_id],rc.get_rotation(),rc.get_velocity()) ;
 		  }
               }
+          } else if ( str.indexOf("android_battery") > -1 ){
+	      var androidEl = document.getElementById('android_connect');
+	      androidEl.innerHTML = 'Android battery';
+              androidEl.style.color="#000000" ;
+	      android_battery_option["frm_bgc"] = "#333333" ;
+	      android_battery_progress.set_val( str.split(" ")[1] ) ;
+	      android_battery_progress.draw() ;
           } else if ( str.indexOf("battery") > -1 ){
-	      //var romEl = document.getElementById('roomba');
-              //romEl.style.color="#000000" ;
-              //romEl.innerHTML = str;
+              var roombaEl = document.getElementById('roomba_connect');
+	      roombaEl.innerHTML = 'Roomba battery';
+              roombaEl.style.color="#000000" ;
 	      battery_option["frm_bgc"] = "#333333" ;
 	      battery_progress.set_val( str.split(" ")[1] ) ;
 	      battery_progress.draw() ;
-	  } //else if ( str.indexOf("id") > -1 ){}
+          } //else if ( str.indexOf("id") > -1 ){}
       }
 
       function connection_observer(){
@@ -248,32 +265,41 @@
       //roombaEl.innerHTML = 'no roomba';
 
       battery_progress.draw() ;
+      android_battery_progress.draw() ;
 
       // roomba observer
       setInterval(function(){
 	  var now = new Date().getTime();
 	  var roombaEl = document.getElementById('roomba_connect');
+	  var androidEl = document.getElementById('android_connect');
 	  //roombaEl.style.fontSize="25px" ;
 	  //roombaEl.style.textShadow = "2px 2px 2px gray" ;
 	  if ( now - lastUpdate > 6000 ) {
 	      roombaEl.style.color="#ff0000" ;
-	      roombaEl.innerHTML = 'missing';
+	      roombaEl.innerHTML = 'Roomba is missing';
 	      battery_option["frm_bgc"] = "#ff0000" ;
 	      battery_progress.set_val(0) ;
 	      battery_progress.draw() ;
+	      androidEl.style.color="#ff0000" ;
+	      androidEl.innerHTML = 'Android is missing';
+	      android_battery_option["frm_bgc"] = "#ff0000" ;
+	      android_battery_progress.set_val(0) ;
+	      android_battery_progress.draw() ;
 	  } else if ( roombaEl.innerHTML.indexOf("missing") > -1 ){
 	      roombaEl.style.color="#000000" ;
 	      roombaEl.innerHTML = 'roomba';
 	      battery_option["frm_bgc"] = "#333333" ;
 	      battery_progress.set_val(0) ;
 	      battery_progress.draw() ;
+	      android_battery_option["frm_bgc"] = "#333333" ;
+	      android_battery_progress.set_val(0) ;
+	      android_battery_progress.draw() ;
 	  }
       }, 5000);
-
       //my_connect() ;
     </script>
 
-    <script type="text/javascript" src="https://rawgithub.com/start-jsk/telemba/master/hangouts/roombox-controller.js"></script>
+    <script type="text/javascript" src="https://rawgithub.com/start-jsk/telemba/check/hangouts/roombox-controller.js"></script>
     <script>
       //console.log( window.innerWidth + " nanoda" ) ;
       var rc = new RoomboxController({
