@@ -135,8 +135,8 @@
       </form>
     </div>
     <script type="text/javascript">
-      var t = new Messaging.Client("hackerspace.jp", 1883,
-				  "clientId");
+      // create random clientId for MQTT server
+      var t = new Messaging.Client("hackerspace.jp", 1883, '_' + Math.random().toString(36).substr(2, 9));
       var battery_option = new Object() ;
       battery_option["to"] = 0 ;
       battery_option["animation"] = 0 ;
