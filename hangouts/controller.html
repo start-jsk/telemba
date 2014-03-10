@@ -1,9 +1,7 @@
 <html>
 
   <head>
-    <meta http-equiv="Content-Type" content="text/html;
-					     charset=UTF-8">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript"
 	    src="https://hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
     <script type="text/javascript"
@@ -14,8 +12,10 @@
     <style>
       #container {
       width: 100%;
+      max-width: 400px;
       height: 70%;
-      border: medium solid #ffffff;
+      max-height: 400px;
+      border: medium solid #000000;
       overflow: hidden;
       padding: 0;
       margin: 0;
@@ -77,62 +77,67 @@
     </style>
   </head>
   <body>
-    <div id="container">
-      <div id="result">topics</div>
-      <div id="state"> </div>
-      <div id="roomba" style="margin-top: 10px;">
-	<span id="roomba_connect"
-	      style="font-size: 15px; text-shadow: 2px 2px 2px gray">
-	  Roomba is missing
-	</span>
-	<span id="roomba_battery" style="position:relative; left: 150px; top: -20px; " />
-      </div>
-      <div id="android">
-	<span id="android_connect" style="font-size: 15px; text-shadow: 2px 2px 2px gray">
-	  Android is missing
-	</span>
-	<span id="android_battery" style="position:relative; left: 150px; top: -20px; " />
-      </div>
+    <div id="video_column" style="float:left;">
+      This is video column.
     </div>
-    <div id="buttons" style="margin-left:5px;">
-      <button name="connect" onclick="my_connect()" class="button">
-	<font size="2">Connect</font>
-      </button>
-      <button name="invite" onclick="sendInvite()" class="button">
-	<font size="2">Invite</font>
-      </button>
-      <button name="clean" onclick="sendClean()" class="button">
-	<font size="2">Clean</font>
-      </button>
-    </div>
-    <div id="forms" style="margin-left:5px; ">
-      <div>
-	<span style="width:40%; text-align:center;">USERNAME:</span>
-	<input type="text" class="login" id="usr" style="width:55%" />
+    <div style="width:400px; float:right;">
+	<div id="result">topics</div>
+	<div id="state"> </div>
+	<div id="roomba" style="margin-top: 10px;">
+	  <span id="roomba_connect"
+		style="font-size: 15px; text-shadow: 2px 2px 2px gray">
+	    Roomba is missing
+	  </span>
+	  <span id="roomba_battery" style="position:relative; left: 150px; top: -20px; " />
+	</div>
+	<div id="android">
+	  <span id="android_connect" style="font-size: 15px; text-shadow: 2px 2px 2px gray">
+	    Android is missing
+	  </span>
+	  <span id="android_battery" style="position:relative; left: 150px; top: -20px; " />
+	</div>
+      <div id="container" style="width:400px;">
       </div>
-      <div>
-	<span style="width:40%; text-align:center;">PASSWORD:</span>
-	<input type="password" class="login" id="pwd" style="width:55%" />
+      <div id="buttons" style="margin-left:5px;">
+	<button name="connect" onclick="my_connect()" class="button">
+	  <font size="2">Connect</font>
+	</button>
+	<button name="invite" onclick="sendInvite()" class="button">
+	  <font size="2">Invite</font>
+	</button>
+	<button name="clean" onclick="sendClean()" class="button">
+	  <font size="2">Clean</font>
+	</button>
       </div>
-    </div>
-    <div id="inputs">
-      <input type="checkbox"
-	     id="side_brush"
-	     value="side_brush" onclick="sendMotor()">
-      side_brush</input><br/>
-      <input type="checkbox"
-	     id="vacuum"
-	     value="vacuum" onclick="sendMotor()">
-      vacuum</input><br/>
-      <input type="checkbox"
-	     id="main_brush"
-	     value="main_brush" onclick="sendMotor()">
-      main_brush</input><br/>
-      <form oninput="amount.value=rangeInput.value">
-	<span style="width:40%; text-align:center;">Servo:</span>
-        <input type="range" id="rangeInput" name="rangeInput" min="1500" max="5000">
-        <output name="amount" for="rangeInput">0</output>
-      </form>
+      <div id="forms" style="margin-left:5px; ">
+	<div>
+	  <span style="width:40%; text-align:center;">USERNAME:</span>
+	  <input type="text" class="login" id="usr" style="width:55%" />
+	</div>
+	<div>
+	  <span style="width:40%; text-align:center;">PASSWORD:</span>
+	  <input type="password" class="login" id="pwd" style="width:55%" />
+	</div>
+      </div>
+      <div id="inputs">
+	<input type="checkbox"
+	       id="side_brush"
+	       value="side_brush" onclick="sendMotor()">
+	side_brush</input><br/>
+	<input type="checkbox"
+	       id="vacuum"
+	       value="vacuum" onclick="sendMotor()">
+	vacuum</input><br/>
+	<input type="checkbox"
+	       id="main_brush"
+	       value="main_brush" onclick="sendMotor()">
+	main_brush</input><br/>
+	<form oninput="amount.value=rangeInput.value">
+	  <span style="width:40%; text-align:center;">Servo:</span>
+          <input type="range" id="rangeInput" name="rangeInput" min="1500" max="5000">
+          <output name="amount" for="rangeInput">0</output>
+	</form>
+      </div>
     </div>
     <script type="text/javascript">
       // create random clientId for MQTT server
@@ -299,7 +304,7 @@
       //my_connect() ;
     </script>
 
-    <script type="text/javascript" src="https://rawgithub.com/start-jsk/telemba/master/hangouts/roombox-controller.js"></script>
+    <script type="text/javascript" src="roombox-controller.js"></script>
     <script>
       //console.log( window.innerWidth + " nanoda" ) ;
       var rc = new RoomboxController({
@@ -326,8 +331,8 @@
                 w = Math.atan2 (y, -x) / 3.14;
               }
 	      v = Math.sqrt(x*x+y*y);
-              console.log( "x="+x + "/" + "y=" + y ) ;
-              console.log( "v="+v + "/" + "w=" + w ) ;
+	 console.log( "x="+x + "/" + "y=" + y ) ;
+	 console.log( "v="+v + "/" + "w=" + w ) ;
 //	      if (x < 0) {
 //		  if (y < 0) {
 //		      r = -1;
