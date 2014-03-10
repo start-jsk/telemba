@@ -17,7 +17,8 @@ function init() {
     gapi.hangout.onApiReady.add(
 	function(eventObj) {
             if (eventObj.isApiReady) {
-		location.href="https://rawgithub.com/start-jsk/telemba/mainapp/hangouts/controller.html?" + gapi.hangout.getHangoutUrl() ;
+		//location.href="https://rawgithub.com/start-jsk/telemba/mainapp/hangouts/controller.html?" + gapi.hangout.getHangoutUrl() ;
+		location.href="https://rawgithub.com/start-jsk/telemba/mainapp/hangouts/controller.html"
             }
 	});
 }
