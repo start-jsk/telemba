@@ -99,19 +99,7 @@
           <input type="range" id="rangeInput" name="rangeInput" min="1500" max="5000">
             <output name="amount" for="rangeInput">0</output>
 	  </form>
-	</div>
       </div>
-      <script>
-	function init() {
-	gapi.hangout.onApiReady.add(
-	function(eventObj) {
-	if (eventObj.isApiReady) {
-	initVideoCanvas();
-	}
-	});
-	}
-	gadgets.util.registerOnLoadHandler(init);
-      </script>
       <script type="text/javascript"
 	      src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
       <script type="text/javascript"

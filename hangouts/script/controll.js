@@ -289,3 +289,13 @@ function expandVideoCanvasHeight() {
 	e.style.top = '0px';
     }
 }
+
+function init() {
+    gapi.hangout.onApiReady.add(
+        function(eventObj) {
+            if (eventObj.isApiReady) {
+		initVideoCanvas();
+            }
+        });
+}
+gadgets.util.registerOnLoadHandler(init);
