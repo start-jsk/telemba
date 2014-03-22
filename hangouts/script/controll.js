@@ -4,6 +4,7 @@ var battery_option = new Object() ;
 battery_option["to"] = 0 ;
 battery_option["animation"] = 0 ;
 battery_option["width"] = 100 ;
+battery_option["height"] = 10 ;
 battery_option["frm_bgc"] = "#333333" ;
 var battery_progress = new html5jp.progress("roomba_battery", battery_option);
 var android_battery_option = new Object();
