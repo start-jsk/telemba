@@ -13,8 +13,8 @@
   <script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"></script>
   <!-- for published app -->
   <!-- <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"></script> -->
-  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/mqttws31.js"></script>
-  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/progress.js"></script>
+  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/mqttws31.js"></script>
+  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/progress.js"></script>
   <style>
   #container {
       width: 100%;
@@ -101,8 +101,8 @@
    }
    gadgets.util.registerOnLoadHandler(init);
   </script>
-  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/roombox-controller.js"></script>
-  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/controll.js"></script>
+  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
+  <script type="text/javascript" src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/controll.js"></script>
 </body>
   ]]>
   </Content>
