@@ -33,14 +33,14 @@
 	  <td id="result" class="controller_message">topics</td>
 	</tr>
 	<tr id="connection_title" class="controller_message_title">
-	  <td align="left" style="width: 30%"> CONNECTION: </td>
+	  <td align="left" style="width: 30%"> NETWORK: </td>
 	  <td id="state" class="controller_message"> state </td>
 	</tr>
+      </table>
+      <table border="0px">
 	<tr id="connection_title" class="controller_message_title">
 	  <td align="left" style="width: 30%"> BATTERY: </td>
 	</tr>
-      </table>
-      <table border="0">
 	<tr>
 	  <td id="roomba_battery" align="center" class="battery_bar">
 	  </td>
@@ -59,6 +59,41 @@
 	      style="width: 50% ;"
 	      class="controller_message">
 	    Android missing
+	  </td>
+	</tr>
+      </table>
+      <table border="0px" style="font-size: 12px;">
+	<tr id="connection_title" class="controller_message_title">
+	  <td align="left" style="width: 30%"> UTILITY: </td>
+	</tr>
+	<tr>
+	  <td align="left">
+	    <input type="checkbox"
+		   id="side_brush"
+		   value="side_brush" onclick="sendMotor()">
+	    side_brush
+	    </input><br />
+	    <input type="checkbox"
+		   id="vacuum"
+		   value="vacuum" onclick="sendMotor()">
+	    vacuum
+	    </input><br />
+	    <input type="checkbox"
+		   id="main_brush"
+		   value="main_brush" onclick="sendMotor()">
+	    main_brush
+	    </input>
+	  </td>
+	  <td align="left" style="width: 40%;">
+	    <div>
+	      SERVO:
+	    </div>
+	    <form oninput="amount.value=rangeInput.value">
+              <input type="range" id="rangeInput"
+		     style="width: 70%; height: 10px"
+		     name="rangeInput" min="1500" max="5000" value="3000">
+	      <output name="amount" for="rangeInput">3000</output>
+	    </form>
 	  </td>
 	</tr>
       </table>
@@ -87,25 +122,6 @@
 		 style="width:55%">
 	  </input>
 	</div>
-      </div>
-      <div id="inputs">
-	<input type="checkbox"
-	       id="side_brush"
-	       value="side_brush" onclick="sendMotor()">
-	  side_brush</input><br/>
-	<input type="checkbox"
-	       id="vacuum"
-	       value="vacuum" onclick="sendMotor()">
-	  vacuum</input><br/>
-	<input type="checkbox"
-	       id="main_brush"
-	       value="main_brush" onclick="sendMotor()">
-	  main_brush</input><br/>
-	<form oninput="amount.value=rangeInput.value">
-	  <span style="width:40%; text-align:center;">Servo:</span>
-          <input type="range" id="rangeInput" name="rangeInput" min="1500" max="5000">
-            <output name="amount" for="rangeInput">0</output>
-	  </form>
       </div>
       <script type="text/javascript"
 	      src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
