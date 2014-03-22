@@ -15,13 +15,13 @@ var RoomboxController = function(opts)
     this.image_id = 0 ;
     this.roomba = new Array() ;
     this.roomba[0] = new Image();
-    this.roomba[0].src = base_uri + "roomba.png" ;
+    this.roomba[0].src = base_uri + "img/roomba.png" ;
     this.roomba[1] = new Image();
-    this.roomba[1].src = base_uri + "roomba-right.png" ;
+    this.roomba[1].src = base_uri + "img/roomba-right.png" ;
     this.roomba[2] = new Image();
-    this.roomba[2].src = base_uri + "roomba-left.png" ;
+    this.roomba[2].src = base_uri + "img/roomba-left.png" ;
     this.roomba[3] = new Image();
-    this.roomba[3].src = base_uri + "roomba-top.png" ;
+    this.roomba[3].src = base_uri + "img/roomba-top.png" ;
 
     this.trans_roomba = new Image();
     this.trans_roomba.src = base_uri + "trans-roomba.png" ;
