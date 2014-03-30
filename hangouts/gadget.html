@@ -19,7 +19,7 @@
     </link>
   </head>
   <body>
-    <div style="width:300px; float:right;">
+    <div id="right_column" style="width:300px; float:right;">
       <table border="0">
 	<tr id="topics_title" class="controller_message_title">
 	  <td align="left" style="width: 30%"> TOPIC: </td>
@@ -92,7 +92,9 @@
       </table>
       <div id="container" style="width:400px; height:400px">
       </div>
-      <div id="buttons" style="clear:both; margin-left:5px;">
+    </div>
+    <div id="bottom_column" style="float:left;">
+      <div style="width:300px;">
 	<button name="connect" onclick="my_connect()" class="button">
 	  <font size="2">Connect</font>
 	</button>
@@ -102,26 +104,25 @@
 	<button name="clean" onclick="sendClean()" class="button">
 	  <font size="2">Clean</font>
 	</button>
-      </div>
-      <div id="forms" style="margin-left:5px; ">
-	<div>
-	  <span style="width:40%; text-align:center;">USERNAME:</span>
-	  <input type="text" class="login" id="usr" style="width:55%">
-	  </input>
-	</div>
-	<div>
-	  <span style="width:40%; text-align:center;">PASSWORD:</span>
-	  <input type="password" class="login" id="pwd"
-		 style="width:55%">
-	  </input>
+	<div id="forms" style="margin-left:5px; ">
+	  <div>
+	    <span style="width:40%; text-align:center;">USERNAME:</span>
+	    <input type="text" class="login" id="usr" style="width:55%"></input>
+	  </div>
+	  <div>
+	    <span style="width:40%; text-align:center;">PASSWORD:</span>
+	    <input type="password" class="login" id="pwd"
+		   style="width:55%"></input>
+	  </div>
 	</div>
       </div>
-      <script type="text/javascript"
-	      src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
-      <script type="text/javascript"
-	      src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/controll.js"></script>
-      <script type="text/javascript"
-	      src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/init.js"></script>
     </div>
+    <div style="clear:both; "></div>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/controll.js"></script>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/init.js"></script>
   </body>
 </html>

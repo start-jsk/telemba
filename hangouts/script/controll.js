@@ -19,15 +19,16 @@ var pwd = "";
 var bmp = 0 ;
 var lastUpdate = new Date().getTime() / 2;
 
-function initVideoCanvas (ui_width, ui_height) {
-    var canvas = gapi.hangout.layout.getVideoCanvas();
+var ui_width, ui_height ;
+
+function resizeVideo(canvas){
     var w = canvas.getWidth() ;
     var h = canvas.getHeight();
     var orig_w = w ;
     var orig_h = h ;
-    var video_min = 10 ;
-    var video_max_w = Math.max(document.body.clientWidth - ui_width, video_min);
-    var video_max_h = Math.max(document.body.clientHeight - ui_height, video_min);
+    var video_margin = 10 ;
+    var video_max_w = Math.max(document.body.clientWidth - ui_width, video_margin) - video_margin;
+    var video_max_h = Math.max(document.body.clientHeight - ui_height, video_margin) - video_margin;
     var x, y ;
     var pos = new Object() ;
     //
@@ -39,7 +40,7 @@ function initVideoCanvas (ui_width, ui_height) {
 	h = w * orig_h/orig_w ;
     }
     x = (video_max_w - w)/2.0 ;
-    y = (video_max_h - h)/2.0 ;
+    y = (video_max_h - h)/2.0 + ui_height;
     //
     console.log("[initVideoCanvas]") ;
     console.log("  x=" + x) ;
@@ -52,13 +53,19 @@ function initVideoCanvas (ui_width, ui_height) {
     canvas.setPosition(pos);
     canvas.setWidth(w);
     canvas.setHeight(h);
+}
+
+function initVideoCanvas (uw, uh) {
+    ui_width = uw ;
+    ui_height = uh;
+    var canvas = gapi.hangout.layout.getVideoCanvas();
+    resizeVideo(canvas) ;
     canvas.setVisible(true);
 };
 
 window.onresize = function() {
     var canvas = gapi.hangout.layout.getVideoCanvas();
-    canvas.setHeight(document.body.clientHeight);
-    console.log("height:", document.body.clientHeight);
+    resizeVideo(canvas) ;
 }
 
 t.onConnectionLost = function(rc){
