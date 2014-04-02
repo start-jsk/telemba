@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Telemba Controller">
+    <Require feature="rpc"/>
+    <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html"><![CDATA[
+  <!DOCTYPE html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+					     charset=UTF-8">
+    </meta>
+    <!-- for sandbox -->
+    <script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4">
+    </script>
+    <!-- for published app -->
+    <!-- <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"/> -->
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/mqttws31.js">
+    </script>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/progress.js">
+    </script>
+    <link rel="stylesheet" type="text/css" media="all"
+	  href="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/css/controller.css">
+    </link>
+  </head>
+  <body>
+    <div style="width:300px; float:right;">
+      <table border="0">
+	<tr id="topics_title" class="controller_message_title">
+	  <td align="left" style="width: 30%"> TOPIC: </td>
+	  <td id="result" class="controller_message">topics</td>
+	</tr>
+	<tr id="connection_title" class="controller_message_title">
+	  <td align="left" style="width: 30%"> NETWORK: </td>
+	  <td id="state" class="controller_message"> state </td>
+	</tr>
+      </table>
+      <table border="0px">
+	<tr id="connection_title" class="controller_message_title">
+	  <td align="left" style="width: 30%"> BATTERY: </td>
+	</tr>
+	<tr>
+	  <td id="roomba_battery" align="center" class="battery_bar">
+	  </td>
+	  <td id="android_battery" align="center" class="battery_bar">
+	  </td>
+	</tr>
+	<tr>
+	  <td id="roomba_connect"
+	      align="center"
+	      style="width: 50% ;"
+	      class="controller_message">
+	    Roomba missing
+	  </td>
+	  <td id="android_connect"
+	      align="center"
+	      style="width: 50% ;"
+	      class="controller_message">
+	    Android missing
+	  </td>
+	</tr>
+      </table>
+      <table border="0px" style="font-size: 12px;">
+	<tr id="connection_title" class="controller_message_title">
+	  <td align="left" style="width: 30%"> UTILITY: </td>
+	</tr>
+	<tr>
+	  <td align="left">
+	    <input type="checkbox"
+		   id="side_brush"
+		   value="side_brush" onclick="sendMotor()">
+	    side_brush
+	    </input><br />
+	    <input type="checkbox"
+		   id="vacuum"
+		   value="vacuum" onclick="sendMotor()">
+	    vacuum
+	    </input><br />
+	    <input type="checkbox"
+		   id="main_brush"
+		   value="main_brush" onclick="sendMotor()">
+	    main_brush
+	    </input>
+	  </td>
+	  <td align="left" style="width: 40%;">
+	    <div>
+	      SERVO:
+	    </div>
+	    <form oninput="amount.value=rangeInput.value">
+              <input type="range" id="rangeInput"
+		     style="width: 70%; height: 10px"
+		     name="rangeInput" min="1500" max="5000" value="3000">
+	      <output name="amount" for="rangeInput">3000</output>
+	    </form>
+	  </td>
+	</tr>
+      </table>
+      <div id="container" style="width:400px; height:400px">
+      </div>
+    </div>
+    <div style="height: 100%; float:left; overflow: hidden; ">
+      <div style="width:300px; height: 100%; bottom: 0px;">
+	<button name="connect" onclick="my_connect()" class="button">
+	  <font size="2">Connect</font>
+	</button>
+	<button name="invite" onclick="sendInvite()" class="button">
+	  <font size="2">Invite</font>
+	</button>
+	<button name="clean" onclick="sendClean()" class="button">
+	  <font size="2">Clean</font>
+	</button>
+	<div id="forms" style="margin-left:5px; ">
+	  <div>
+	    <span style="width:40%; text-align:center;">USERNAME:</span>
+	    <input type="text" class="login" id="usr" style="width:55%"></input>
+	  </div>
+	  <div>
+	    <span style="width:40%; text-align:center;">PASSWORD:</span>
+	    <input type="password" class="login" id="pwd"
+		   style="width:55%"></input>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <div style="clear:both; "></div>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/controll.js"></script>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/init.js"></script>
+  </body>
+  ]]>
+  </Content>
+</Module>
