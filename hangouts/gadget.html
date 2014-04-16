@@ -55,55 +55,46 @@
 	  </td>
 	</tr>
       </table>
-      <table border="0px" style="font-size: 12px;">
-	<tr id="connection_title" class="controller_message_title">
-	  <td align="left" style="width: 30%"> UTILITY: </td>
-	</tr>
-	<tr>
-	  <td align="left">
-	    <input type="checkbox"
-		   id="side_brush"
-		   value="side_brush" onclick="sendMotor()">
-	    side_brush
-	    </input><br />
-	    <input type="checkbox"
-		   id="vacuum"
-		   value="vacuum" onclick="sendMotor()">
-	    vacuum
-	    </input><br />
-	    <input type="checkbox"
-		   id="main_brush"
-		   value="main_brush" onclick="sendMotor()">
-	    main_brush
-	    </input>
-	  </td>
-	  <td align="left" style="width: 40%;">
-	    <div>
-	      SERVO:
-	    </div>
-	    <form oninput="amount.value=rangeInput.value">
-              <input type="range" id="rangeInput"
-		     style="width: 70%; height: 10px"
-		     name="rangeInput" min="1500" max="5000" value="3000">
-	      <output name="amount" for="rangeInput">3000</output>
-	    </form>
-	  </td>
-	</tr>
-      </table>
-      <div id="container" style="width:400px; height:400px">
-      </div>
-    </div>
-    <div id="bottom_column" style="float:left;">
+      <!-- <table border="0px" style="font-size: 12px;"> -->
+      <!-- 	<tr id="connection_title" class="controller_message_title"> -->
+      <!-- 	  <td align="left" style="width: 30%"> UTILITY: </td> -->
+      <!-- 	</tr> -->
+      <!-- 	<tr> -->
+      <!-- 	  <td align="left"> -->
+      <!-- 	    <input type="checkbox" -->
+      <!-- 		   id="side_brush" -->
+      <!-- 		   value="side_brush" onclick="sendMotor()"> -->
+      <!-- 	    side_brush -->
+      <!-- 	    </input><br /> -->
+      <!-- 	    <input type="checkbox" -->
+      <!-- 		   id="vacuum" -->
+      <!-- 		   value="vacuum" onclick="sendMotor()"> -->
+      <!-- 	    vacuum -->
+      <!-- 	    </input><br /> -->
+      <!-- 	    <input type="checkbox" -->
+      <!-- 		   id="main_brush" -->
+      <!-- 		   value="main_brush" onclick="sendMotor()"> -->
+      <!-- 	    main_brush -->
+      <!-- 	    </input> -->
+      <!-- 	  </td> -->
+      <!-- 	  <td align="left" style="width: 40%;"> -->
+      <!-- 	    <div> -->
+      <!-- 	      SERVO: -->
+      <!-- 	    </div> -->
+      <!-- 	    <form oninput="amount.value=rangeInput.value"> -->
+      <!--         <input type="range" id="rangeInput" -->
+      <!-- 		     style="width: 70%; height: 10px" -->
+      <!-- 		     name="rangeInput" min="1500" max="5000" value="3000"> -->
+      <!-- 	      <output name="amount" for="rangeInput">3000</output> -->
+      <!-- 	    </form> -->
+      <!-- 	  </td> -->
+      <!-- 	</tr> -->
+      <!-- </table> -->
+      <div id="container"> </div>
+      <!--
+	  </div><div id="bottom_column" style="float:left;">
+      -->
       <div style="width:300px;">
-	<button name="connect" onclick="my_connect()" class="button">
-	  <font size="2">Connect</font>
-	</button>
-	<button name="invite" onclick="sendInvite()" class="button">
-	  <font size="2">Invite</font>
-	</button>
-	<button name="clean" onclick="sendClean()" class="button">
-	  <font size="2">Clean</font>
-	</button>
 	<div id="forms" style="margin-left:5px; ">
 	  <div>
 	    <span style="width:40%; text-align:center;">USERNAME:</span>
@@ -115,6 +106,15 @@
 		   style="width:55%"></input>
 	  </div>
 	</div>
+	<div name="connect" onclick="my_connect()" class="connect_button">
+	  <!-- <font size="2">Connect</font> -->
+	</div>
+	<!-- <button name="invite" onclick="sendInvite()" class="button"> -->
+	<!--   <font size="2">Invite</font> -->
+	<!-- </button> -->
+	<!-- <button name="clean" onclick="sendClean()" class="button"> -->
+	<!--   <font size="2">Clean</font> -->
+	<!-- </button> -->
       </div>
     </div>
     <div style="clear:both; "></div>

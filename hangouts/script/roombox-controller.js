@@ -24,7 +24,7 @@ var RoomboxController = function(opts)
     this.roomba[3].src = base_uri + "img/roomba-top.png" ;
 
     this.trans_roomba = new Image();
-    this.trans_roomba.src = base_uri + "trans-roomba.png" ;
+    this.trans_roomba.src = base_uri + "img/trans-roomba.png" ;
 
     this._stickEl= opts.stickElement || this._buildJoystickStick();
     this._baseEl= opts.baseElement || this._buildJoystickBase();
