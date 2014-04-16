@@ -1,18 +1,23 @@
 // create random clientId for MQTT server
 var t = new Messaging.Client("hackerspace.jp", 1883, '_' + Math.random().toString(36).substr(2, 9));
-var battery_option = new Object() ;
-battery_option["to"] = 0 ;
-battery_option["animation"] = 0 ;
-battery_option["width"] = 100 ;
-battery_option["height"] = 10 ;
-battery_option["frm_bgc"] = "#333333" ;
-var battery_progress = new html5jp.progress("roomba_battery", battery_option);
-var android_battery_option = new Object();
-android_battery_option["to"] = 0 ;
-android_battery_option["animation"] = 0 ;
-android_battery_option["width"] = 100 ;
-android_battery_option["frm_bgc"] = "#333333" ;
-var android_battery_progress = new html5jp.progress("android_battery", android_battery_option);
+
+var base_uri = 'https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/';
+var telemba_connect_image_uri=base_uri + "img/telemba_connect.png" ;
+var telemba_missing_image_uri=base_uri + "img/telemba_missing.png" ;
+
+// var battery_option = new Object() ;
+// battery_option["to"] = 0 ;
+// battery_option["animation"] = 0 ;
+// battery_option["width"] = 100 ;
+// battery_option["height"] = 10 ;
+// battery_option["frm_bgc"] = "#333333" ;
+// var battery_progress = new html5jp.progress("roomba_battery", battery_option);
+// var android_battery_option = new Object();
+// android_battery_option["to"] = 0 ;
+// android_battery_option["animation"] = 0 ;
+// android_battery_option["width"] = 100 ;
+// android_battery_option["frm_bgc"] = "#333333" ;
+// var android_battery_progress = new html5jp.progress("android_battery", android_battery_option);
 
 var usr = "";
 var pwd = "";
@@ -69,14 +74,18 @@ window.onresize = function() {
 }
 
 t.onConnectionLost = function(rc){
-    var stateEl = document.getElementById('state');
-    stateEl.style.color="#ff6666" ;
-    stateEl.innerHTML = 'lost connection';
+    // var stateEl = document.getElementById('state');
+    // stateEl.style.color="#ff6666" ;
+    // stateEl.innerHTML = 'lost connection';
+    var stateEl = document.getElementById('telemba_connection');
+    stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
 };
 t.onConnect = function(rc){
-    var stateEl = document.getElementById('state');
-    stateEl.style.color="#66ff66" ;
-    stateEl.innerHTML = 'connect';
+    // var stateEl = document.getElementById('state');
+    // stateEl.style.color="#66ff66" ;
+    // stateEl.innerHTML = 'connect';
+    var stateEl = document.getElementById('telemba_connection');
+    stateEl.style.backgroundImage = "url(" + telemba_connect_image_uri + ")" ;
 };
 t.onMessageArrived = function(msg) {
     var str = msg.payloadString ;
@@ -93,28 +102,36 @@ t.onMessageArrived = function(msg) {
 	    }
         }
     } else if ( str.indexOf("android_battery") > -1 ){
-	var androidEl = document.getElementById('android_connect');
-	androidEl.innerHTML = 'Android battery';
-        androidEl.style.color="#000000" ;
-	android_battery_option["frm_bgc"] = "#333333" ;
-	android_battery_progress.set_val( str.split(" ")[1] ) ;
-	android_battery_progress.draw() ;
+	// var androidEl = document.getElementById('android_connect');
+	// androidEl.innerHTML = 'Android battery';
+        // androidEl.style.color="#000000" ;
+	// android_battery_option["frm_bgc"] = "#333333" ;
+	// android_battery_progress.set_val( str.split(" ")[1] ) ;
+	// android_battery_progress.draw() ;
     } else if ( str.indexOf("battery") > -1 ){
-        var roombaEl = document.getElementById('roomba_connect');
-	roombaEl.innerHTML = 'Roomba battery';
-        roombaEl.style.color="#000000" ;
-	battery_option["frm_bgc"] = "#333333" ;
-	battery_progress.set_val( str.split(" ")[1] ) ;
-	battery_progress.draw() ;
+        // var roombaEl = document.getElementById('roomba_connect');
+	// roombaEl.innerHTML = 'Roomba battery';
+        // roombaEl.style.color="#000000" ;
+	// battery_option["frm_bgc"] = "#333333" ;
+	// battery_progress.set_val( str.split(" ")[1] ) ;
+	// battery_progress.draw() ;
     } //else if ( str.indexOf("id") > -1 ){}
 }
 
 function connection_observer(){
-    var stateEl = document.getElementById('state');
-    stateEl.style.color =
-        t._client.connected ? "#66ff66" : "#ff6666" ;
-    stateEl.innerHTML =
-        t._client.connected ? "connect" : "lost connection" ;
+    // var stateEl = document.getElementById('state');
+    // stateEl.style.color =
+    //     t._client.connected ? "#66ff66" : "#ff6666" ;
+    // stateEl.innerHTML =
+    //     t._client.connected ? "connect" : "lost connection" ;
+    var stateEl = document.getElementById('telemba_connection');
+    if ( t._client.connected ){
+	console.log("connect") ;
+	stateEl.style.backgroundImage = "url(" + telemba_connect_image_uri + ")" ;
+    } else {
+	console.log("lost connection") ;
+	stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
+    }
 }
 
 function my_connect(){
@@ -127,23 +144,29 @@ function my_connect(){
             t.connect({onSuccess: t.onConnect, userName: usr, password: pwd}) ;
         }
         if ( ! t._client.connected ) {
-            var stateEl = document.getElementById('state');
-            stateEl.style.color="#ff6666" ;
-            stateEl.innerHTML = 'password missmatch';
+            // var stateEl = document.getElementById('state');
+            // stateEl.style.color="#ff6666" ;
+            // stateEl.innerHTML = 'password missmatch';
+	    var stateEl = document.getElementById('telemba_connection');
+	    stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
+	    console.log('password missmatch') ;
         }
     } catch ( e ) {
-        var stateEl = document.getElementById('state');
-        stateEl.style.color="#ff6666" ;
-        stateEl.innerHTML = e.message; // | 'connection error ' ;
+        // var stateEl = document.getElementById('state');
+        // stateEl.style.color="#ff6666" ;
+        // stateEl.innerHTML = e.message; // | 'connection error ' ;
+	var stateEl = document.getElementById('telemba_connection');
+	stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
+	console.log(e.message) ;
     }
     setTimeout( "connection_observer()", 3000 ) ;
 }
 
 function my_publish(mes){
     if ( t._client.connected ){
-        var resEl = document.getElementById('result');
-        resEl.style.color="#000000" ;
-        resEl.innerHTML = mes;
+        // var resEl = document.getElementById('result');
+        // resEl.style.color="#000000" ;
+        // resEl.innerHTML = mes;
 	//
         var message = new Messaging.Message(mes);
         message.destinationName = "telemba/"+usr+"/command" ;
@@ -159,17 +182,17 @@ function my_subscribe(){
     }
 }
 
-var stateEl = document.getElementById('state');
-stateEl.style.color="#000000" ;
-stateEl.style.fontSize="15px" ;
-stateEl.style.textShadow = "2px 2px 2px gray" ;
-stateEl.innerHTML = 'no connection';
+// var stateEl = document.getElementById('state');
+// stateEl.style.color="#000000" ;
+// stateEl.style.fontSize="15px" ;
+// stateEl.style.textShadow = "2px 2px 2px gray" ;
+// stateEl.innerHTML = 'no connection';
 
-var resultEl = document.getElementById('result');
-resultEl.style.color="#000000" ;
-resultEl.style.fontSize="15px" ;
-resultEl.style.textShadow = "2px 2px 2px gray" ;
-resultEl.innerHTML = 'no topics';
+// var resultEl = document.getElementById('result');
+// resultEl.style.color="#000000" ;
+// resultEl.style.fontSize="15px" ;
+// resultEl.style.textShadow = "2px 2px 2px gray" ;
+// resultEl.innerHTML = 'no topics';
 
 //var roombaEl = document.getElementById('roomba');
 //roombaEl.style.color="#000000" ;
@@ -177,41 +200,39 @@ resultEl.innerHTML = 'no topics';
 //roombaEl.style.textShadow = "2px 2px 2px gray" ;
 //roombaEl.innerHTML = 'no roomba';
 
-battery_progress.draw() ;
-android_battery_progress.draw() ;
+//battery_progress.draw() ;
+//android_battery_progress.draw() ;
 
 // roomba observer
 setInterval(function(){
     var now = new Date().getTime();
-    var roombaEl = document.getElementById('roomba_connect');
-    var androidEl = document.getElementById('android_connect');
+    //var roombaEl = document.getElementById('roomba_connect');
+    //var androidEl = document.getElementById('android_connect');
     //roombaEl.style.fontSize="25px" ;
     //roombaEl.style.textShadow = "2px 2px 2px gray" ;
     if ( now - lastUpdate > 6000 ) {
-	roombaEl.style.color="#ff0000" ;
-	roombaEl.innerHTML = 'Roomba is missing';
-	battery_option["frm_bgc"] = "#ff0000" ;
-	battery_progress.set_val(0) ;
-	battery_progress.draw() ;
-	androidEl.style.color="#ff0000" ;
-	androidEl.innerHTML = 'Android is missing';
-	android_battery_option["frm_bgc"] = "#ff0000" ;
-	android_battery_progress.set_val(0) ;
-	android_battery_progress.draw() ;
-    } else if ( roombaEl.innerHTML.indexOf("missing") > -1 ){
-	roombaEl.style.color="#000000" ;
-	roombaEl.innerHTML = 'roomba';
-	battery_option["frm_bgc"] = "#333333" ;
-	battery_progress.set_val(0) ;
-	battery_progress.draw() ;
-	android_battery_option["frm_bgc"] = "#333333" ;
-	android_battery_progress.set_val(0) ;
-	android_battery_progress.draw() ;
+	// roombaEl.style.color="#ff0000" ;
+	// roombaEl.innerHTML = 'Roomba is missing';
+	// battery_option["frm_bgc"] = "#ff0000" ;
+	// battery_progress.set_val(0) ;
+	// battery_progress.draw() ;
+	// androidEl.style.color="#ff0000" ;
+	// androidEl.innerHTML = 'Android is missing';
+	// android_battery_option["frm_bgc"] = "#ff0000" ;
+	// android_battery_progress.set_val(0) ;
+	// android_battery_progress.draw() ;
+	// } else if ( roombaEl.innerHTML.indexOf("missing") > -1 ){
+	// roombaEl.style.color="#000000" ;
+	// roombaEl.innerHTML = 'roomba';
+	// battery_option["frm_bgc"] = "#333333" ;
+	// battery_progress.set_val(0) ;
+	// battery_progress.draw() ;
+	// android_battery_option["frm_bgc"] = "#333333" ;
+	// android_battery_progress.set_val(0) ;
+	// android_battery_progress.draw() ;
     }
 }, 5000);
-//my_connect() ;
 
-//console.log( window.innerWidth + " nanoda" ) ;
 var rc = new RoomboxController({
     container: document.getElementById('container'),
     mouseSupport: true
@@ -259,11 +280,11 @@ setInterval(function(){
     }
     //my_subscribe();
     // Send servo mesg
-    pwm_ref_prev = pwm_ref_curr;
-    pwm_ref_curr = document.getElementById('rangeInput').value;
-    if (pwm_ref_curr != pwm_ref_prev) {
-	sendServo(pwm_ref_curr);
-    }
+    // pwm_ref_prev = pwm_ref_curr;
+    // pwm_ref_curr = document.getElementById('rangeInput').value;
+    // if (pwm_ref_curr != pwm_ref_prev) {
+    // 	sendServo(pwm_ref_curr);
+    // }
 }, 1/10 * 1000);
 
 setInterval(function(){
@@ -310,6 +331,7 @@ function sendMotor() {
     if ( main_brush.checked ) _3 = 1 ;
     my_publish("motors " + _1 + " " + _2 + " " + _3) ;
 }
+
 function sendServo(pwm_ref) {
     my_publish("servo " + pwm_ref) ;
 }

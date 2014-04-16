@@ -98,6 +98,19 @@
     vertical-align: middle;
 }
 
+#telemba_connection{
+    width: 230px ;
+    height: 200px ;
+    max-height:100px ;
+    max-width:230px;
+    margin: 2px ;
+    background-image: url(../img/telemba_missing.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    vertical-align: middle;
+}
+
 #container {
     width: 230px;
     height: 100% ;
