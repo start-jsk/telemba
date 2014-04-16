@@ -27,6 +27,7 @@
   </head>
   <body>
     <div id="right_column" style="width:300px; float:right;">
+      <div class="telemba_logo"></div>
       <table border="0">
 	<tr id="topics_title" class="controller_message_title">
 	  <td align="left" style="width: 30%"> TOPIC: </td>
