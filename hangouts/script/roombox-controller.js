@@ -9,8 +9,8 @@ var RoomboxController = function(opts)
     this._width = opts.width || (this._container.offsetWidth > 0 ? this._container.offsetWidth : 300) ;
     //this._height = (opts.height || (window.innerHeight > 0 ? window.innerHeight : 500)) ;
     this._height = (opts.height || (this._container.offsetHeight > 0 ? this._container.offsetHeight : 500)) ;
-    this._img_width = opts.imgWidth || 128 ;
-    this._img_height = opts.imgHeight || 128 ;
+    this._img_width = opts.imgWidth || 100 ;
+    this._img_height = opts.imgHeight || 100 ;
 
     this.image_id = 0 ;
     this.roomba = new Array() ;
