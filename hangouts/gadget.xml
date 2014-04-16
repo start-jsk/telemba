@@ -26,8 +26,9 @@
     </link>
   </head>
   <body>
-    <div id="right_column" style="width:300px; float:right;">
+    <div id="right_column" style="width:230px; float:right;">
       <div class="telemba_logo"></div>
+
       <table border="0">
 	<tr id="topics_title" class="controller_message_title">
 	  <td align="left" style="width: 30%"> TOPIC: </td>
@@ -37,8 +38,6 @@
 	  <td align="left" style="width: 30%"> NETWORK: </td>
 	  <td id="state" class="controller_message"> state </td>
 	</tr>
-      </table>
-      <table border="0px">
 	<tr id="connection_title" class="controller_message_title">
 	  <td align="left" style="width: 30%"> BATTERY: </td>
 	</tr>
@@ -63,6 +62,7 @@
 	  </td>
 	</tr>
       </table>
+
       <!-- <table border="0px" style="font-size: 12px;"> -->
       <!-- 	<tr id="connection_title" class="controller_message_title"> -->
       <!-- 	  <td align="left" style="width: 30%"> UTILITY: </td> -->
@@ -102,7 +102,7 @@
       <!--
 	  </div><div id="bottom_column" style="float:left;">
       -->
-      <div style="width:300px;">
+      <div style="width:100%;">
 	<div id="forms" style="margin-left:5px; ">
 	  <div>
 	    <img src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/img/username.png" class="login_string"></img>

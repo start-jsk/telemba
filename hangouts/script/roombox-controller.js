@@ -6,7 +6,7 @@ var RoomboxController = function(opts)
     this._container= opts.container || document.body;
 
     //this._width = opts.width || (window.innerWidth > 0 ? window.innerWidth : 300) ;
-    this._width = opts.width || (this._container.offsetWidth > 0 ? this._container.offsetWidth : 300) ;
+    this._width = opts.width || (this._container.offsetWidth > 0 ? this._container.offsetWidth : 230) ;
     //this._height = (opts.height || (window.innerHeight > 0 ? window.innerHeight : 500)) ;
     this._height = (opts.height || (this._container.offsetHeight > 0 ? this._container.offsetHeight : 500)) ;
     this._img_width = opts.imgWidth || 100 ;
