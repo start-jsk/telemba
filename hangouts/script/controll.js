@@ -109,6 +109,7 @@ t.onMessageArrived = function(msg) {
 	// android_battery_progress.set_val( str.split(" ")[1] ) ;
 	// android_battery_progress.draw() ;
     } else if ( str.indexOf("battery") > -1 ){
+	bp.draw_progress(str.split(" ")[1]) ;
         // var roombaEl = document.getElementById('roomba_connect');
 	// roombaEl.innerHTML = 'Roomba battery';
         // roombaEl.style.color="#000000" ;
@@ -236,6 +237,9 @@ setInterval(function(){
 var rc = new RoomboxController({
     container: document.getElementById('container'),
     mouseSupport: true
+}) ;
+var bp = new BatteryProgress({
+    container: document.getElementById('telemba_battery')
 }) ;
 var prev_x=0 ;
 var prev_y=0 ;
