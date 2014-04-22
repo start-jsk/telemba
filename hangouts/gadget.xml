@@ -21,14 +21,24 @@
     <script type="text/javascript"
 	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/progress.js">
     </script>
+    <script type="text/javascript"
+	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/battery_progress.js">
+    </script>
     <link rel="stylesheet" type="text/css" media="all"
 	  href="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/css/controller.css">
     </link>
   </head>
   <body>
     <div id="right_column" style="width:230px; float:right;">
-      <div class="telemba_logo"></div>
-      <div id="telemba_battery"></div>
+      <div id="battery_progress">
+	<img src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/img/roomba-battery.png" class="login_string"></img>
+	<div id="telemba_battery"
+	     style="width:50%; height: 30px; margin: 2px;
+		    display: inline-block; _display: inline;
+		    background-position: center center;
+		    vertical-align: middle;
+		    "></div>
+      </div>
       <div id="telemba_connection"></div>
       <!-- <table border="0"> -->
       <!-- 	<tr id="topics_title" class="controller_message_title"> -->
@@ -124,6 +134,9 @@
 	<!--   <font size="2">Clean</font> -->
 	<!-- </button> -->
       </div>
+    </div>
+    <div id="header">
+      <div class="telemba_logo"></div>
     </div>
     <div style="clear:both; "></div>
     <script type="text/javascript"
