@@ -4,7 +4,7 @@ function init() {
             if (eventObj.isApiReady) {
 		var rc = document.getElementById("right_column") ;
 		var bc = document.getElementById("bottom_column") ;
-		var w = 230 , h = 0 ;
+		var w = 230 , h = 80 ;
 		console.log("[init]") ;
 		if ( rc ) {
 		    console.log("  right_column: " +rc.offsetWidth) ;
