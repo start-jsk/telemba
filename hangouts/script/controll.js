@@ -273,7 +273,7 @@ setInterval(function(){
 	}
 	//	      }
         if ( x < 0 ) v *= -1 ;
-	v = Math.round(v);
+	v = 2* Math.round(v);
 	r = Math.round(r);
 
 	my_publish("drive "+v+" "+r+" ") ;
