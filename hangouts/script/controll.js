@@ -4,6 +4,7 @@ var t = new Messaging.Client("hackerspace.jp", 1883, '_' + Math.random().toStrin
 var base_uri = 'https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/';
 var telemba_connect_image_uri=base_uri + "img/telemba_connect.png" ;
 var telemba_missing_image_uri=base_uri + "img/telemba_missing.png" ;
+var invited = false ;
 
 // var battery_option = new Object() ;
 // battery_option["to"] = 0 ;
@@ -129,6 +130,10 @@ function connection_observer(){
     if ( t._client.connected ){
 	console.log("connect") ;
 	stateEl.style.backgroundImage = "url(" + telemba_connect_image_uri + ")" ;
+	if ( ! invited ){
+	    sendInvite()
+	    invited = true ;
+	}
     } else {
 	console.log("lost connection") ;
 	stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
@@ -151,7 +156,12 @@ function my_connect(){
 	    var stateEl = document.getElementById('telemba_connection');
 	    stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
 	    console.log('password missmatch') ;
-        }
+        } else {
+	    if ( ! invited ){
+		sendInvite()
+		invited = true ;
+	    }
+	}
     } catch ( e ) {
         // var stateEl = document.getElementById('state');
         // stateEl.style.color="#ff6666" ;
@@ -303,7 +313,8 @@ function sendInit() {
     my_publish("init") ;
 }
 function sendInvite() {
-    my_publish("invite" + " " + location.search.substr(1)) ;
+    my_publish("invite" + " " + gapi.hangout.getHangoutUrl()) ;
+    //my_publish("invite" + " " + location.search.substr(1)) ;
 }
 function sendForward() {
     my_publish("fwd") ;
