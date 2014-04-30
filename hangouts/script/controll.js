@@ -103,6 +103,7 @@ t.onMessageArrived = function(msg) {
 	    }
         }
     } else if ( str.indexOf("android_battery") > -1 ){
+	abp.draw_progress( new Number(str.split(" ")[1]) /100.0) ;
 	// var androidEl = document.getElementById('android_connect');
 	// androidEl.innerHTML = 'Android battery';
         // androidEl.style.color="#000000" ;
@@ -110,7 +111,7 @@ t.onMessageArrived = function(msg) {
 	// android_battery_progress.set_val( str.split(" ")[1] ) ;
 	// android_battery_progress.draw() ;
     } else if ( str.indexOf("battery") > -1 ){
-	bp.draw_progress(str.split(" ")[1]) ;
+	bp.draw_progress( new Number(str.split(" ")[1]) /100.0) ;
         // var roombaEl = document.getElementById('roomba_connect');
 	// roombaEl.innerHTML = 'Roomba battery';
         // roombaEl.style.color="#000000" ;
@@ -251,6 +252,10 @@ var rc = new RoomboxController({
 var bp = new BatteryProgress({
     container: document.getElementById('telemba_battery')
 }) ;
+var abp = new BatteryProgress({
+    container: document.getElementById('android_battery')
+}) ;
+
 var prev_x=0 ;
 var prev_y=0 ;
 var pwm_ref_prev = 0, pwm_ref_curr = 0;
@@ -287,7 +292,7 @@ setInterval(function(){
 	}
 	//	      }
         if ( x < 0 ) v *= -1 ;
-	v = Math.round(v);
+	v = 2.0 * Math.round(v);
 	r = Math.round(r);
 
 	my_publish("drive "+v+" "+r+" ") ;
