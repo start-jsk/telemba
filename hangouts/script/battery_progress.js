@@ -15,25 +15,38 @@ var BatteryProgress = function(opts)
 
     this._caseEl= opts.caseElement || this._buildBatteryProgressCase();
     this._barEl= opts.barElement || this._buildBatteryProgressBar();
+    this._bgEl =  document.createElement( 'canvas' );
     this._filterEl = opts.filterElement || this._buildFilterElement() ;
 
     this._container.style.position= "relative";
 
+    this._container.appendChild(this._bgEl) ;
+    this._bgEl.width = this._width;
+    this._bgEl.height = this._height ;
+    this._bgEl.style.position= "absolute" ;
+    this._bgEl.style.width = this._bgEl.width ;
+    this._bgEl.style.height = this._bgEl.height ;
+    //
     this._container.appendChild(this._caseEl);
+    this._caseEl.width = this._width * 0.75;
+    this._caseEl.height = this._height ;
     this._caseEl.style.position= "absolute" ;
-    this._caseEl.style.width = "100%" ;
-    this._caseEl.style.height = "100%" ;
+    this._caseEl.style.width = this._caseEl.width ;
+    this._caseEl.style.height = this._caseEl.height ;
     //this._caseEl.style.margin = "auto" ;
     this._container.appendChild(this._barEl);
+    this._barEl.width = this._width * 0.75 ;
+    this._barEl.height = this._height ;
     this._barEl.style.position= "absolute" ;
-    this._barEl.style.width = "100%" ;
-    this._barEl.style.height = "100%" ;
+    this._barEl.style.width = this._barEl.width ;
+    this._barEl.style.height = this._barEl.height ;
     //this._barEl.style.margin = "auto" ;
     // this._container.appendChild(this._filterEl);
     // this._filterEl.style.position= "absolute" ;
     // this._filterEl.style.width = "0%" ;
     // this._filterEl.style.height = "100%" ;
     // this._filterEl.style.right = "0px" ;
+    this._draw_percent(this._bgEl,-0.01) ;
 }
 
 BatteryProgress.prototype.destroy= function()
@@ -52,6 +65,7 @@ BatteryProgress.touchScreenAvailable= function()
 
 BatteryProgress.prototype.draw_progress = function(rate){
     BatteryProgress.prototype._draw_image(this._barEl, this._battery_progress_bar, rate) ;
+    BatteryProgress.prototype._draw_percent(this._bgEl, rate) ;
 }
 
 BatteryProgress.prototype._draw_image = function(canvas, image, rate){
@@ -76,6 +90,17 @@ BatteryProgress.prototype._draw_image = function(canvas, image, rate){
     context.restore();
 }
 
+BatteryProgress.prototype._draw_percent = function(canvas, rate){
+    var context= canvas.getContext('2d');
+    context.clearRect(0,0,canvas.width,canvas.height) ;
+    context.font = "bold " + Math.round(canvas.height*0.8) + "px 'Times New Roman'";
+    context.textAlign = "end" ;
+    context.fillStyle = "white";
+    context.fillText( Math.round(rate*100) + "%",
+		      canvas.width, canvas.height ) ;
+    context.restore();
+}
+
 BatteryProgress.prototype._buildBatteryProgressBar= function()
 {
     var canvas= document.createElement( 'canvas' );
@@ -93,7 +118,7 @@ BatteryProgress.prototype._buildBatteryProgressCase= function()
     var image = this._battery_progress_case ;
     image.onload
 	= function() {
-	    BatteryProgress.prototype._draw_image(canvas, image, 1.0) ;
+	    BatteryProgress.prototype._draw_image(canvas, image, 1.1) ;
 	}
     return canvas ;
 }
