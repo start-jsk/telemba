@@ -222,7 +222,9 @@ setInterval(function(){
     //var androidEl = document.getElementById('android_connect');
     //roombaEl.style.fontSize="25px" ;
     //roombaEl.style.textShadow = "2px 2px 2px gray" ;
-    if ( now - lastUpdate > 6000 ) {
+    if ( now - lastUpdate > 3000 ) {
+	abp.draw_progress(-0.01) ;
+	bp.draw_progress(-0.01) ;
 	// roombaEl.style.color="#ff0000" ;
 	// roombaEl.innerHTML = 'Roomba is missing';
 	// battery_option["frm_bgc"] = "#ff0000" ;
