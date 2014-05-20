@@ -1,0 +1,135 @@
+
+.controller_message_title {
+    font-size: 15px;
+    text-shadow: 2px 2px 2px gray;
+    margin: 1px ;
+}
+
+.controller_message {
+    font-size: 15px;
+    text-shadow: 2px 2px 2px gray;
+    margin: 1px ;
+}
+
+.battery_bar {
+    /* position:relative; */
+    /* left: 150px; */
+    /* top: -20px; */
+}
+
+.connect_button{
+    width: 230px ;
+    height: 100px ;
+    max-width: 150px ;
+    max-height: 100px;
+    margin: 0 auto;
+    text-align: center;
+    background-image: url("../img/connect-button.png");
+    background: url("../img/connect-button.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.connect_button:active{
+    padding-top:1px;
+    padding-bottom:1px;
+}
+
+.login_textbox {
+    width: 50% ;
+    height: 20px ;
+    margin: 2px ;
+    background-color: transparent;
+    background-position: center center;
+    color: #ffffff ;
+    border-width: 1px ;
+}
+
+.login_string{
+    width: 40% ;
+    max-height:15px;
+    margin: 2px ;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+.login_usr_string{
+    max-width: 30% ;
+    height: 15px ;
+    max-height:15px;
+    margin: 2px ;
+    display: block;
+    background-image: url("../img/username.png");
+    background: url("../img/username.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+.login_pwd_string{
+    max-width: 30% ;
+    height: 15px ;
+    max-height:15px;
+    margin: 2px ;
+    display: block;
+    background-image: url("../img/password.png");
+    background: url("../img/password.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+.telemba_logo{
+    width: 230px ;
+    height: 80px ;
+    max-height:80px;
+    margin: 2px ;
+    display: block;
+    background-image: url("../img/telemba_logo.png");
+    background: url("../img/telemba_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+#telemba_connection{
+    width: 230px ;
+    height: 200px ;
+    max-height:100px ;
+    max-width:230px;
+    margin: 2px ;
+    background-image: url(../img/telemba_missing.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+#container {
+    width: 230px;
+    height: 300px ;
+    max-width: 230px;
+    max-height: 300px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+table {
+    width: 100% ;
+}
+
+
+html, body { height: 100%;
+	     background-color: #0A0A0A;
+	     color: #ffffff;
+	   }
+

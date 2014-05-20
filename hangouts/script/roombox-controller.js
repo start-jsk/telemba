@@ -1,26 +1,30 @@
+var base_uri = 'https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/';
+
 var RoomboxController = function(opts)
 {
     opts= opts || {};
     this._container= opts.container || document.body;
 
-    this._width = opts.width || (window.innerWidth > 0 ? window.innerWidth : 300) ;
-    this._height = (opts.height || (window.innerHeight > 0 ? window.innerHeight : 500)) ;
-    this._img_width = opts.imgWidth || 128 ;
-    this._img_height = opts.imgHeight || 128 ;
+    //this._width = opts.width || (window.innerWidth > 0 ? window.innerWidth : 300) ;
+    this._width = opts.width || (this._container.offsetWidth > 0 ? this._container.offsetWidth : 230) ;
+    //this._height = (opts.height || (window.innerHeight > 0 ? window.innerHeight : 500)) ;
+    this._height = (opts.height || (this._container.offsetHeight > 0 ? this._container.offsetHeight : 500)) ;
+    this._img_width = opts.imgWidth || 70 ;
+    this._img_height = opts.imgHeight || 70 ;
 
     this.image_id = 0 ;
     this.roomba = new Array() ;
     this.roomba[0] = new Image();
-    this.roomba[0].src = "roomba.png" ;
+    this.roomba[0].src = base_uri + "img/roomba.png" ;
     this.roomba[1] = new Image();
-    this.roomba[1].src = "roomba-right.png" ;
+    this.roomba[1].src = base_uri + "img/roomba-right.png" ;
     this.roomba[2] = new Image();
-    this.roomba[2].src = "roomba-left.png" ;
+    this.roomba[2].src = base_uri + "img/roomba-left.png" ;
     this.roomba[3] = new Image();
-    this.roomba[3].src = "roomba-top.png" ;
+    this.roomba[3].src = base_uri + "img/roomba-top.png" ;
 
     this.trans_roomba = new Image();
-    this.trans_roomba.src = "trans-roomba.png" ;
+    this.trans_roomba.src = base_uri + "img/trans-roomba.png" ;
 
     this._stickEl= opts.stickElement || this._buildJoystickStick();
     this._baseEl= opts.baseElement || this._buildJoystickBase();
@@ -164,14 +168,19 @@ RoomboxController.prototype._onUp= function()
 
 RoomboxController.prototype._onDown= function(x, y)
 {
-    var dx = x - this._baseX ;
-    var dy = y - this._baseY ;
+    //var dx = x - this._baseX ;
+    //var dy = y - this._baseY ;
+    var dx = x - this._container.offsetLeft - this._baseX;
+    var dy = y - this._container.offsetTop -  + this._baseY;
+     
+    console.log( "_onDown: x,y=" + x + "," + y);
+    console.log( "_onDown: dx,dy" + dx + "," + dy);
     if ( Math.sqrt(dx*dx+dy*dy) < this.roomba[this.image_id].width/2 ) {
 	this._pressed= true; 
 	this._startX= x;
 	this._startY= y;
     }
-}
+ }
 
 RoomboxController.prototype._onMove= function(x, y)
 {
@@ -182,6 +191,8 @@ RoomboxController.prototype._onMove= function(x, y)
     } else if( this._pressed === true ){
 	this._stickX= this._baseX + (x - this._startX) ;
 	this._stickY= this._baseY + (y - this._startY) ;
+	
+	// console.log ("_onMove: " + this._stickX + "," + this._stickY);
 
 	this._draw_roomba(this._stickEl,this.roomba[this.image_id],this.get_rotation(), this.get_velocity()) ;
 
@@ -227,15 +238,15 @@ RoomboxController.prototype._onMouseUp= function(event)
 
 RoomboxController.prototype._onMouseDown= function(event)
 {
-    var x= event.clientX;
-    var y= event.clientY;
+    var x= event.pageX;
+    var y= event.pageY;
     return this._onDown(x, y);
 }
 
 RoomboxController.prototype._onMouseMove= function(event)
 {
-    var x= event.clientX;
-    var y= event.clientY;
+    var x= event.pageX;
+    var y= event.pageY;
     return this._onMove(x, y);
 }
 
