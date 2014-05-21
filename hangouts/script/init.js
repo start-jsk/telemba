@@ -15,6 +15,9 @@ function init() {
 		    h = Math.max(h.bc.offsetHeight) ;
 		}
 		initVideoCanvas(w,h);
+		
+		// 所有者を決めるための枠組みの初期化
+		initOwnerFramework();
             }
         });
 }

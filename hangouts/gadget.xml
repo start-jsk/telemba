@@ -16,29 +16,29 @@
     <!-- for published app -->
     <!-- <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"/> -->
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/mqttws31.js">
+	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/mqttws31.js">
     </script>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/progress.js">
+	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/progress.js">
     </script>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/battery_progress.js">
+	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/battery_progress.js">
     </script>
     <link rel="stylesheet" type="text/css" media="all"
-	  href="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/css/controller.css">
+	  href="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/css/controller.css">
     </link>
   </head>
   <body>
     <div id="right_column" style="width:230px; float:right;">
       <div id="battery_progress">
-	<img src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/img/roomba-battery.png" class="login_string"></img>
+	<img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/roomba-battery.png" class="login_string"></img>
 	<div id="telemba_battery"
 	     style="width:53%; height: 15px; margin: 2px ;
 		    display: inline-block; _display: inline;
 		    background-position: center center;
 		    vertical-align: middle;
 		    "></div>
-	<img src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/img/android-battery.png" class="login_string"></img>
+	<img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/android-battery.png" class="login_string"></img>
 	<div id="android_battery"
 	     style="width:53%; height: 15px; margin: 2px ;
 		    display: inline-block; _display: inline;
@@ -123,17 +123,29 @@
       <div style="width:100%;">
 	<div id="forms" style="margin-left:5px; ">
 	  <div>
-	    <img src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/img/username.png" class="login_string"></img>
+	    <img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/username.png" class="login_string"></img>
 	    <input type="text" class="login_textbox" id="usr"></input>
 	  </div>
 	  <div>
-	    <img src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/img/password.png" class="login_string"></img>
+	    <img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/password.png" class="login_string"></img>
 	    <input type="password" class="login_textbox" id="pwd"></input>
 	  </div>
 	</div>
 	<div name="connect" onclick="my_connect()" class="connect_button">
 	  <!-- <font size="2">Connect</font> -->
 	</div>
+	<div>
+	<button name="request" onclick="requestControl()" class="button">
+	  <font size="2">Request</font>
+	</button>
+	<button name="release" onclick="releaseControl()" class="button">
+	  <font size="2">Release</font>
+	</button>
+	</div>
+	<div id="owner_name">
+	   <font size="2">No owner</font>
+	</div>
+	
 	<!-- <button name="invite" onclick="sendInvite()" class="button"> -->
 	<!--   <font size="2">Invite</font> -->
 	<!-- </button> -->
@@ -147,11 +159,11 @@
     </div>
     <div style="clear:both; "></div>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/roombox-controller.js"></script>
+	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/roombox-controller.js"></script>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/controll.js"></script>
+	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/controll.js"></script>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/script/init.js"></script>
+	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/init.js"></script>
   </body>
   ]]>
   </Content>

@@ -1,4 +1,4 @@
-var base_uri = 'https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/';
+var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
 
 var RoomboxController = function(opts)
 {
