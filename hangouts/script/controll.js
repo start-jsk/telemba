@@ -148,7 +148,7 @@ function my_connect(){
         if ( usr.length + pwd.length == 0  ) {
             t.connect({onSuccess: t.onConnect}) ;
         } else {
-            t.connect({onSuccess: t.onConnect, userName: usr, password: pwd}) ;
+            t.connect({onSuccess: t.onConnect, userName: usr, password: pwd, useSSL: true}) ;
         }
 	/*
         if ( ! t._client.connected ) {
