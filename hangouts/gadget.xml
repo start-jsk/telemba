@@ -4,41 +4,37 @@
     <Require feature="rpc"/>
     <Require feature="views"/>
   </ModulePrefs>
+  <!-- Github hosting -->
+  <UserPref name="baseURL" default_value="https://rawgithub.com/start-jsk/telemba/master/hangouts"/>
+  <!-- Dropbox hosting. Change User ID to yours when you use this.
+  <UserPref name="baseURL" default_value="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts"/> -->
+  <!-- for published app -->
+  <UserPref name="baseAPI" default_value="//talkgadget.google.com/hangouts/_/api/"/>
+  <!-- for sandbox
+  <UserPref name="baseAPI" default_value="//hangoutsapi.talkgadget.google.com/hangouts/_/api"/> -->
   <Content type="html"><![CDATA[
   <!DOCTYPE html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html;
-					     charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </meta>
-    <!-- for sandbox -->
-    <script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4">
+    <script src="__UP_baseAPI__/hangout.js?v=1.4">
     </script>
-    <!-- for published app -->
-    <!-- <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"/> -->
-    <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/mqttws31.js">
-    </script>
-    <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/progress.js">
-    </script>
-    <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/battery_progress.js">
-    </script>
-    <link rel="stylesheet" type="text/css" media="all"
-	  href="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/css/controller.css">
-    </link>
+    <script type="text/javascript" src="__UP_baseURL__/script/mqttws31.js"></script>
+    <script type="text/javascript" src="__UP_baseURL__/script/progress.js"></script>
+    <script type="text/javascript" src="__UP_baseURL__/script/battery_progress.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="__UP_baseURL__/css/controller.css"></link>
   </head>
   <body>
     <div id="right_column" style="width:230px; float:right;">
       <div id="battery_progress">
-	<img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/roomba-battery.png" class="login_string"></img>
+	<img src="__UP_baseURL__/img/roomba-battery.png" class="login_string"></img>
 	<div id="telemba_battery"
 	     style="width:53%; height: 15px; margin: 2px ;
 		    display: inline-block; _display: inline;
 		    background-position: center center;
 		    vertical-align: middle;
 		    "></div>
-	<img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/android-battery.png" class="login_string"></img>
+	<img src="__UP_baseURL__/img/android-battery.png" class="login_string"></img>
 	<div id="android_battery"
 	     style="width:53%; height: 15px; margin: 2px ;
 		    display: inline-block; _display: inline;
@@ -123,11 +119,11 @@
       <div style="width:100%;">
 	<div id="forms" style="margin-left:5px; ">
 	  <div>
-	    <img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/username.png" class="login_string"></img>
+	    <img src="__UP_baseURL__/img/username.png" class="login_string"></img>
 	    <input type="text" class="login_textbox" id="usr"></input>
 	  </div>
 	  <div>
-	    <img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/password.png" class="login_string"></img>
+	    <img src="__UP_baseURL__/img/password.png" class="login_string"></img>
 	    <input type="password" class="login_textbox" id="pwd"></input>
 	  </div>
 	</div>
@@ -159,11 +155,11 @@
     </div>
     <div style="clear:both; "></div>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/roombox-controller.js"></script>
+	    src="__UP_baseURL__/script/roombox-controller.js"></script>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/controll.js"></script>
+	    src="__UP_baseURL__/script/controll.js"></script>
     <script type="text/javascript"
-	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/init.js"></script>
+	    src="__UP_baseURL__/script/init.js"></script>
   </body>
   ]]>
   </Content>
