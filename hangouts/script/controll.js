@@ -275,8 +275,8 @@ var pwm_ref_prev = 0, pwm_ref_curr = 0;
 setInterval(function(){
     var x = -rc.deltaY();
     var y = -rc.deltaX();
-    if ( Math.abs(x-prev_x) < 1 && Math.abs(y-prev_y) < 1 ){
-	//        console.log("skip") ;
+    if ( Math.abs(x-prev_x) < 1 && Math.abs(y-prev_y) < 1 && x*x+y*y < 1){
+	console.log("skip") ;
     } else {
 	prev_x = x ;
 	prev_y = y ;
