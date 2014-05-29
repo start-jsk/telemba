@@ -1,7 +1,7 @@
 // create random clientId for MQTT server
-var t = new Messaging.Client("hackerspace.jp", 1883, '_' + Math.random().toString(36).substr(2, 9));
+var message_client = new Messaging.Client("hackerspace.jp", 1883, '_' + Math.random().toString(36).substr(2, 9));
 
-var base_uri = 'https://dl.dropboxusercontent.com/u/125424331/telemba/hangouts/';
+var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
 var telemba_connect_image_uri=base_uri + "img/telemba_connect.png" ;
 var telemba_missing_image_uri=base_uri + "img/telemba_missing.png" ;
 var invited = false ;
@@ -74,21 +74,21 @@ window.onresize = function() {
     resizeVideo(canvas) ;
 }
 
-t.onConnectionLost = function(rc){
+message_client.onConnectionLost = function(rc){
     // var stateEl = document.getElementById('state');
     // stateEl.style.color="#ff6666" ;
     // stateEl.innerHTML = 'lost connection';
     var stateEl = document.getElementById('telemba_connection');
     stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
 };
-t.onConnect = function(rc){
+message_client.onConnect = function(rc){
     // var stateEl = document.getElementById('state');
     // stateEl.style.color="#66ff66" ;
     // stateEl.innerHTML = 'connect';
     var stateEl = document.getElementById('telemba_connection');
     stateEl.style.backgroundImage = "url(" + telemba_connect_image_uri + ")" ;
 };
-t.onMessageArrived = function(msg) {
+message_client.onMessageArrived = function(msg) {
     var str = msg.payloadString ;
     str = str.trim() ;
     lastUpdate = new Date().getTime();
@@ -128,7 +128,7 @@ function connection_observer(){
     // stateEl.innerHTML =
     //     t._client.connected ? "connect" : "lost connection" ;
     var stateEl = document.getElementById('telemba_connection');
-    if ( t._client.connected ){
+    if ( message_client._client.connected ){
 	console.log("connect") ;
 	stateEl.style.backgroundImage = "url(" + telemba_connect_image_uri + ")" ;
 	if ( ! invited ){
@@ -146,10 +146,12 @@ function my_connect(){
     pwd = document.getElementById("pwd").value ;
     try{
         if ( usr.length + pwd.length == 0  ) {
-            t.connect({onSuccess: t.onConnect}) ;
+            message_client.connect({onSuccess: message_client.onConnect}) ;
         } else {
-            t.connect({onSuccess: t.onConnect, userName: usr, password: pwd}) ;
+            message_client.connect({onSuccess: message_client.onConnect, userName: usr, password: pwd, useSSL: true}) ;
+            //t.connect({onSuccess: t.onConnect, userName: usr, password: pwd}) ;
         }
+	/*
         if ( ! t._client.connected ) {
             // var stateEl = document.getElementById('state');
             // stateEl.style.color="#ff6666" ;
@@ -163,19 +165,27 @@ function my_connect(){
 		invited = true ;
 	    }
 	}
+	*/
     } catch ( e ) {
         // var stateEl = document.getElementById('state');
         // stateEl.style.color="#ff6666" ;
         // stateEl.innerHTML = e.message; // | 'connection error ' ;
 	var stateEl = document.getElementById('telemba_connection');
 	stateEl.style.backgroundImage = "url(" + telemba_missing_image_uri + ")" ;
+	console.log('catch exception');
 	console.log(e.message) ;
     }
     setTimeout( "connection_observer()", 3000 ) ;
 }
 
 function my_publish(mes){
-    if ( t._client.connected ){
+    // 制御権が自分にあるときだけ送信する
+    console.log ("owner is "+ gapi.hangout.data.getValue('owner'));
+    if (gapi.hangout.data.getValue('owner') != gapi.hangout.getParticipantId()) {
+        return;
+    }
+
+    if ( message_client._client.connected ){
         // var resEl = document.getElementById('result');
         // resEl.style.color="#000000" ;
         // resEl.innerHTML = mes;
@@ -183,14 +193,14 @@ function my_publish(mes){
         var message = new Messaging.Message(mes);
         message.destinationName = "telemba/"+usr+"/command" ;
         console.log( mes + " to " + message.destinationName ) ;
-        t.send(message);
+        message_client.send(message);
     }
 }
 
 function my_subscribe(){
-    if ( t._client.connected ){
+    if ( message_client._client.connected ){
         var topic = "telemba/"+usr+"/data" ;
-        t.subscribe(topic);
+        message_client.subscribe(topic);
     }
 }
 
@@ -320,7 +330,7 @@ function sendInit() {
     my_publish("init") ;
 }
 function sendInvite() {
-    my_publish("invite" + " " + gapi.hangout.getHangoutUrl()) ;
+    //my_publish("invite" + " " + gapi.hangout.getHangoutUrl()) ;
     //my_publish("invite" + " " + location.search.substr(1)) ;
 }
 function sendForward() {
@@ -358,15 +368,56 @@ function sendServo(pwm_ref) {
     my_publish("servo " + pwm_ref) ;
 }
 
-// ビデオが縦画面の場合に縦いっぱいに表示するためのHack:domainが違うのでうまくいかない
-function expandVideoCanvasHeight() {
-    for (var e in document.getElementsByClassName('Ya-sc-t')) {
-	e.style.top = '0px';
-    }
-    for (var e in document.getElementsByClassName('Ya-sc-sa')) {
-	e.style.height = '360px';
-	e.style.width = '180px';
-	e.style.top = '0px';
+// 所有者を決めるための枠組みの初期化
+function initOwnerFramework() {
+    // 共有状態の変更ハンドラを設定する
+    gapi.hangout.data.onStateChanged.add (stateChangedCallback)
+    // 時間表示更新のタイマを設定する
+    ownerDisplayUpdate ();
+}
+
+// 共有状態が変更された際のコールバック関数
+function stateChangedCallback (event) {
+    var owner_name = document.getElementById("owner_name") ;
+    if (event && event.metadata['owner']) {
+	var participant = gapi.hangout.getParticipantById(event.metadata['owner'].value);
+	owner_name.innerHTML = participant.person.displayName + ':' + Math.round((60000 - (new Date().getTime() - event.metadata['owner'].timestamp))/1000) + 'sec';
+    } else {
+	owner_name.innerHTML = 'No owner';
     }
 }
 
+// １秒おきにownerの持つ残り時間を表示
+function ownerDisplayUpdate () {
+    var metadata = gapi.hangout.data.getStateMetadata();
+    if (metadata['owner']) {
+	var participant = gapi.hangout.getParticipantById(metadata['owner'].value);
+	var lasttime = Math.round((60000 - (new Date().getTime() - metadata['owner'].timestamp))/1000);
+	owner_name.innerHTML = participant.person.displayName + ' : ' + ((lasttime < 0) ? 0 : lasttime) + 'sec';
+    } else {
+	owner_name.innerHTML = 'No owner';
+    }
+    setTimeout("ownerDisplayUpdate()", 1000);
+}    
+
+// ルンバの制御権の取得
+function requestControl() {
+    var metadata = gapi.hangout.data.getStateMetadata();
+    // 制御権がとられてから1分以内の場合
+    if (metadata['owner'] && metadata['owner'].timestamp + 60000 > new Date().getTime()) {
+	console.log( "you have to wait more " + Math.round((60000 - (new Date().getTime() - metadata['owner'].timestamp))/1000) + "seconds");
+    }	    
+    // それ以外の場合は自分に制御権を設定する
+    else {
+	gapi.hangout.data.setValue ("owner", gapi.hangout.getParticipantId());
+	// gapi.hangout.data.submitDelta ({"owner":gapi.hangout.getParticipantId()});
+	// console.log( "set owner as: " + gapi.hangout.getParticipantId());
+    }
+}
+
+// ルンバの制御権の解放
+function releaseControl() {
+    gapi.hangout.data.clearValue ("owner");
+    //gapi.hangout.data.submitDelta ({}, ["owner"]);
+    console.log("clear owner");
+}

@@ -239,7 +239,7 @@ Messaging = (function (global) {
      */
     var WireMessage = function (type, options) { 	
 	this.type = type;
-	for(name in options) {
+	for(var name in options) {
 	    if (options.hasOwnProperty(name)) {
 		this[name] = options[name];
 	    }
