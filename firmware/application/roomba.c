@@ -5,6 +5,8 @@
 #include "led.h"
 #include "servo.h"
 
+void timer1_init (void);
+
 void timer1_enable (void)
 {
     IEC0bits.T1IE = 1;  // turn on the timer1 interrupt
@@ -13,6 +15,38 @@ void timer1_enable (void)
 void timer1_disable (void)
 {
     IEC0bits.T1IE = 0;  // turn off the timer1 interrupt
+}
+
+/**
+ * Timer1: RoombaとのUART通信処理。20ms周期。
+ * タイマ1の初期化:システムクロックFosc=32MHz
+ */
+void timer1_init (void)
+{
+    T1CON = 0x00;
+    //T1CONbits.TCKPS = 3;  // set prescaler 1:256
+    TMR1 = 0x0000;
+    PR1 = 16777;	// 1ms period
+    IPC0bits.T1IP = 1;	// set interrupt priority
+    IFS0bits.T1IF = 0;  // reset interrupt flag
+    IEC0bits.T1IE = 1;  // turn on the timer1 interrupt
+    T1CONbits.TON = 1;  // turn on the timer
+}
+
+/* timer1の割り込み処理 */
+void __attribute__((__interrupt__, __shadow__)) _T1Interrupt(void)
+{
+#if 0
+    static int count = 0;
+    // 0.5秒間隔のLEDの点滅(青)
+    if (count ++ % 500 == 0) {
+        led_set(1, !led_get(1));
+    }
+#endif
+    // roombaの更新処理
+    roomba_update ();
+    // 割り込みフラグをクリア
+    IFS0bits.T1IF = 0;
 }
 
 static short roomba_drive_v;

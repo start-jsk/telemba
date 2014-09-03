@@ -15,22 +15,22 @@ extern "C" {
 #define ROICMD_START (128)
 #define ROICMD_BAUD  (129)
 #define ROICMD_CONTROL  (130)
-#define     ROICMD_SAFE     (131)
-#define     ROICMD_FULL     (132)
-#define     ROICMD_POWER    (133)
-#define     ROICMD_SPOT     (134)
-#define     ROICMD_CLEAN    (135)
-#define     ROICMD_MAX      (136)
-#define     ROICMD_DOCK     (143)
-#define     ROICMD_DRIVE    (137)
-#define     ROICMD_MOTORS   (138)
-#define     ROICMD_LEDS     (139)
-#define     ROICMD_SONG     (140)
-#define     ROICMD_PLAY     (141)
-#define     ROICMD_SENSORS  (142)
-#define     ROICMD_STREAM      (148)
-#define     ROICMD_QUERY_LIST  (149)
-#define     ROICMD_PAUSE_RESUME_STREAM  (150)
+#define ROICMD_SAFE     (131)
+#define ROICMD_FULL     (132)
+#define ROICMD_POWER    (133)
+#define ROICMD_SPOT     (134)
+#define ROICMD_CLEAN    (135)
+#define ROICMD_MAX      (136)
+#define ROICMD_DOCK     (143)
+#define ROICMD_DRIVE    (137)
+#define ROICMD_MOTORS   (138)
+#define ROICMD_LEDS     (139)
+#define ROICMD_SONG     (140)
+#define ROICMD_PLAY     (141)
+#define ROICMD_SENSORS  (142)
+#define ROICMD_STREAM      (148)
+#define ROICMD_QUERY_LIST  (149)
+#define ROICMD_PAUSE_RESUME_STREAM  (150)
 
 #define ROICMD_SERVO (180)
 
@@ -42,15 +42,15 @@ extern "C" {
 #define ROI_LEDS_DIRT       (0x01)
 
 /* roi.c */
-int roi_set_clean(unsigned char *buff);
+    int roi_set_clean(unsigned char *buff);
 int roi_set_start(unsigned char *buff);
 int roi_set_baud(unsigned char *buff, int baud);
 int roi_set_control(unsigned char *buff);
 int roi_set_safe(char *buff);
 int roi_set_power(char *buff);
 int roi_set_drive(char *buff, short v, short r);
-int roi_get_drive(char *buff, short *pos_vel, short *radius);
-int roi_get_motors(char *buff, int *side_brush, int *vacuum, int *main_brush);
+    int roi_get_drive (ubyte_t* buff, short* pos_vel, short* radius);
+    int roi_get_motors (ubyte_t* buff, int* side_brush, int* vacuum, int* main_brush);
 int roi_get_servo(char *buff, short *pwm_ref);
 int roi_set_leds(char *buff, unsigned char leds, unsigned char power_color, unsigned char power_intensity);
 int roi_set_stream(char *buff, int id);

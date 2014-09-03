@@ -1,0 +1,12 @@
+files copied from Microchip SDK's demo folder (Basic Communication Demo - OpenAccessory) are:
+ - usb_config.h
+ - usb_config.c
+
+files linked from Microchip SDK's folder are:
+ - usb_host.c
+ - usb_host_android.c
+
+files copied from Microchip SDK's folder and modified:
+ - uart.h
+ - uart.c
+

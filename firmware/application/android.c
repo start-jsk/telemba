@@ -132,9 +132,9 @@ int android_update (void)
             break;
         case ROICMD_MOTORS:
         {
-            int side, vacuum, main;
-            roi_get_motors (recv_buff, &side, &vacuum, &main);
-            roomba_send_motors (side, vacuum, main);
+            int side, vacuum, main_motor;
+            roi_get_motors (recv_buff, &side, &vacuum, &main_motor);
+            roomba_send_motors (side, vacuum, main_motor);
             break;
         }
         case ROICMD_LEDS:

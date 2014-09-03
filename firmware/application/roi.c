@@ -109,7 +109,7 @@ int roi_set_drive (char* buff, short v, short r)
 /**
  *  @brief  DRIVEコマンド
  */
-int roi_get_drive (char* buff, short* pos_vel, short* radius)
+int roi_get_drive (ubyte_t* buff, short* pos_vel, short* radius)
 {
     char* vel;
     char* rad;
@@ -127,7 +127,7 @@ int roi_get_drive (char* buff, short* pos_vel, short* radius)
 /**
  *  @brief  MOTORSコマンド
  */
-int roi_get_motors (char* buff, int* side_brush, int* vacuum, int* main_brush)
+int roi_get_motors (ubyte_t* buff, int* side_brush, int* vacuum, int* main_brush)
 {
     *main_brush = (buff[1] >> 2) & 0x01;
     *vacuum = (buff[1] >> 1) & 0x01;
