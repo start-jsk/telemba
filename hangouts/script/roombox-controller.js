@@ -1,8 +1,9 @@
-var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
+// var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
 
 var RoomboxController = function(opts)
 {
     opts= opts || {};
+    var base_uri = opts.base_uri ||  'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
     this._container= opts.container || document.body;
 
     //this._width = opts.width || (window.innerWidth > 0 ? window.innerWidth : 300) ;
