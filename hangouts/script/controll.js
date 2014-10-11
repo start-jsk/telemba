@@ -1,5 +1,5 @@
 // create random clientId for MQTT server
-var message_client = new Messaging.Client("hackerspace.jp", 1883, '_' + Math.random().toString(36).substr(2, 9));
+var message_client = new Messaging.Client("telemba.jp", 1883, '_' + Math.random().toString(36).substr(2, 9));
 
 var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
 var telemba_connect_image_uri=base_uri + "img/telemba_connect.png" ;
