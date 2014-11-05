@@ -1,8 +1,9 @@
-var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
+// var base_uri = 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
 
 var BatteryProgress = function(opts)
 {
     opts= opts || {};
+    var base_uri = opts.base_uri || 'https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/';
     this._container= opts.container || document.body;
 
     this._width = opts.width || (this._container.offsetWidth > 0 ? this._container.offsetWidth : 230) ;

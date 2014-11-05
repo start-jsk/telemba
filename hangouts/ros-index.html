@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+					     charset=UTF-8">
+    </meta>
+    <script type="text/javascript" src="script/progress.js">
+    </script>
+    <script type="text/javascript" src="script/battery_progress.js">
+    </script>
+    <script type="text/javascript"
+	    src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"
+	    ></script>
+    <script type="text/javascript"
+	    src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"
+	    ></script>
+    <link rel="stylesheet" type="text/css" media="all"
+	  href="css/controller.css">
+    </link>
+  </head>
+  <body>
+    <div id="right_column" style="width:230px; float:right;">
+      <div id="battery_progress">
+	<img src="img/roomba-battery.png" class="login_string"></img>
+	<div id="telemba_battery"
+	     style="width:53%; height: 15px; margin: 2px ;
+		    display: inline-block; _display: inline;
+		    background-position: center center;
+		    vertical-align: middle;
+		    "></div>
+	<img src="img/android-battery.png" class="login_string"></img>
+	<div id="android_battery"
+	     style="width:53%; height: 15px; margin: 2px ;
+		    display: inline-block; _display: inline;
+		    background-position: center center;
+		    vertical-align: middle;
+		    "></div>
+      </div>
+      <div id="telemba_connection"></div>
+      <div id="container"> </div>
+      <div style="width:100%;">
+	<div id="forms" style="margin-left:5px; ">
+	  <div>
+	    <img src="img/username.png" class="login_string"></img>
+	    <input type="text" class="login_textbox" id="usr"></input>
+	  </div>
+	  <div>
+	    <img src="img/password.png" class="login_string"></img>
+	    <input type="password" class="login_textbox" id="pwd"></input>
+	  </div>
+	</div>
+	<div name="connect" onclick="my_connect()" class="connect_button">
+	</div>
+      </div>
+    </div>
+    <div id="header">
+      <div class="telemba_logo"></div>
+    </div>
+    <img src="http://localhost:8080/stream?topic=/telemba/status/camera/image/raw"
+    />
+    <img src="http://localhost:8080/stream?topic=/telemba/request/image/raw" />
+    <div style="clear:both; "></div>
+    <script type="text/javascript"
+	    src="script/roombox-controller.js"></script>
+    <script type="text/javascript"
+	    src="script/ros-telemba.js"></script>
+  </body>
+</html>
