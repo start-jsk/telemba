@@ -1,18 +1,12 @@
 <launch>
  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
- <!--
- rosrun image_transport republish compressed in:=/telemba/status/camera/image _image_transport:=compressed raw out:=/vision/image
- -->
  <node pkg="image_transport" type="republish" name="android_camera_image_transport"
        args="compressed in:=/telemba/status/camera/image raw out:=/telemba/status/camera/image/raw" />
  <node pkg="usb_cam" type="usb_cam_node" name="usb_cam">
-   <remap from="/usb_cam/image_raw/compressed"
-	  to="/telemba/request/compressed_image" />
    <remap from="/usb_cam/image_raw"
 	  to="/telemba/request/image/raw" />
+   <remap from="/usb_cam/image_raw/compressed"
+	  to="/telemba/request/image/raw/compressed" />
  </node>
  <node pkg="mjpeg_server" type="mjpeg_server" name="mjpeg_server" />
- <!--
-     please use this garaemon package
- -->
 </launch>
