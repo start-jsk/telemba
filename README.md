@@ -17,3 +17,8 @@ the video shows.
 Please see the wiki page of telemba for how to make your own telemba.
 
 [Telemba Wiki](https://github.com/start-jsk/telemba/wiki)
+
+# LISENCE
+* Mechanical CAD data is published under Creative Commons (BY-SA)
+* Source code for PIC ADK is published under MIT License. Certain file is provided by Microchip corp.
+* Sorrce code for Android app is published under ??? License (TBD).
