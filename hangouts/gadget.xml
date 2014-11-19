@@ -18,6 +18,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </meta>
     <script src="__UP_baseAPI__/v1/hangout.js">
+    <!-- <script type="text/javascript" src="__UP_baseAPI__/hangout.js?v=1.4"> -->
     </script>
     <script type="text/javascript" src="__UP_baseURL__/script/mqttws31.js"></script>
     <script type="text/javascript" src="__UP_baseURL__/script/progress.js"></script>

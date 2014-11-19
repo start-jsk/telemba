@@ -7,7 +7,7 @@
     <script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4">
     </script>
     <!-- for published app -->
-    <!-- <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"/> -->
+    <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"/>
     <script type="text/javascript"
 	    src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/script/mqttws31.js">
     </script>
@@ -21,7 +21,7 @@
 	  href="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/css/controller.css">
     </link>
   </head>
-  <body>
+  <body onLoad="setFormFromCookie()">
     <div id="right_column" style="width:230px; float:right;">
       <div id="battery_progress">
 	<img src="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts/img/roomba-battery.png" class="login_string"></img>
