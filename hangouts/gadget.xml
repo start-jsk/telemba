@@ -25,7 +25,7 @@
     <script type="text/javascript" src="__UP_baseURL__/script/battery_progress.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="__UP_baseURL__/css/controller.css"></link>
   </head>
-  <body>
+  <body onLoad="setFormFromCookie()">
     <div id="right_column" style="width:230px; float:right;">
       <div id="battery_progress">
 	<img src="__UP_baseURL__/img/roomba-battery.png" class="login_string"></img>

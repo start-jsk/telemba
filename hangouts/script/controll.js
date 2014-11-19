@@ -427,7 +427,7 @@ function releaseControl() {
     console.log("clear owner");
 }
 
-// フォーム用のクッキーをフォームに入力する
+// フォーム用のクッキーを入力する
 function setFormFromCookie () {
     document.getElementById("usr").value = getCookie("phrase");
     console.log("setFromFromCookie:"+getCookie("phrase"));
