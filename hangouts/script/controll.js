@@ -175,6 +175,11 @@ function my_connect(){
 	console.log('catch exception');
 	console.log(e.message) ;
     }
+    // クッキーに保存
+    document.cookie = 'phrase=' + usr;
+    console.log('cookie:'+document.cookie);
+    
+    // 接続状態の監視を起動
     setTimeout( "connection_observer()", 3000 ) ;
 }
 
@@ -420,4 +425,35 @@ function releaseControl() {
     gapi.hangout.data.clearValue ("owner");
     //gapi.hangout.data.submitDelta ({}, ["owner"]);
     console.log("clear owner");
+}
+
+// フォーム用のクッキーをフォームに入力する
+function setFormFromCookie () {
+    document.getElementById("usr").value = getCookie("phrase");
+    console.log("setFromFromCookie:"+getCookie("phrase"));
+}
+
+// 該当する名前のクッキーを返す
+function getCookie( name )
+{
+    var result = null;
+
+    var cookieName = name + '=';
+    var allcookies = document.cookie;
+
+    var position = allcookies.indexOf( cookieName );
+    if( position != -1 )
+    {
+        var startIndex = position + cookieName.length;
+
+        var endIndex = allcookies.indexOf( ';', startIndex );
+        if( endIndex == -1 )
+        {
+            endIndex = allcookies.length;
+        }
+        result = decodeURIComponent(
+            allcookies.substring( startIndex, endIndex ) );
+    }
+
+    return result;
 }
