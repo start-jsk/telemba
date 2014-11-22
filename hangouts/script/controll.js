@@ -176,7 +176,8 @@ function my_connect(){
 	console.log(e.message) ;
     }
     // クッキーに保存
-    document.cookie = 'pass_phrase=' + pass_phrase;
+    document.cookie = 'phrase=' + usr;
+    console.log('cookie:'+document.cookie);
     // 接続状態の監視を起動
     setTimeout( "connection_observer()", 3000 ) ;
 }
@@ -425,12 +426,10 @@ function releaseControl() {
     console.log("clear owner");
 }
 
-// フォーム用のクッキーをフォームに入力する
+// フォーム用のクッキーを入力する
 function setFormFromCookie () {
-    usr = document.getElementById("usr").value ;
-    pwd = document.getElementById("pwd").value ;
-
-    usr = getCookie("pass_phrase");
+    document.getElementById("usr").value = getCookie("phrase");
+    console.log("setFromFromCookie:"+getCookie("phrase"));
 }
 
 // 該当する名前のクッキーを返す
@@ -451,7 +450,6 @@ function getCookie( name )
         {
             endIndex = allcookies.length;
         }
-
         result = decodeURIComponent(
             allcookies.substring( startIndex, endIndex ) );
     }
