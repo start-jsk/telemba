@@ -5,19 +5,19 @@
     <Require feature="views"/>
   </ModulePrefs>
   <!-- Github hosting -->
-  <UserPref name="baseURL" default_value="https://rawgithub.com/start-jsk/telemba/master/hangouts"/>
+  <UserPref name="baseURL" default_value="https://cdn.rawgit.com/start-jsk/telemba/master/hangouts"/>
   <!-- Dropbox hosting. Change User ID to yours when you use this.
   <UserPref name="baseURL" default_value="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts"/> -->
-  <!-- for published app
-  <UserPref name="baseAPI" default_value="//talkgadget.google.com/hangouts/_/api/"/> -->
-  <!-- for sandbox -->
-  <UserPref name="baseAPI" default_value="//hangoutsapi.talkgadget.google.com/hangouts/_/api"/>
+  <!-- for published app -->
+  <UserPref name="baseAPI" default_value="//talkgadget.google.com/hangouts/_/api/"/>
+  <!-- for sandbox
+  <UserPref name="baseAPI" default_value="//hangoutsapi.talkgadget.google.com/hangouts/_/api"/> -->
   <Content type="html"><![CDATA[
   <!DOCTYPE html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </meta>
-    <script src="__UP_baseAPI__/hangout.js?v=1.4">
+    <script src="__UP_baseAPI__/v1/hangout.js">
     </script>
     <script type="text/javascript" src="__UP_baseURL__/script/mqttws31.js"></script>
     <script type="text/javascript" src="__UP_baseURL__/script/progress.js"></script>
