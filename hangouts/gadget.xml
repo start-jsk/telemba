@@ -5,7 +5,7 @@
     <Require feature="views"/>
   </ModulePrefs>
   <!-- Github hosting -->
-  <UserPref name="baseURL" default_value="https://cdn.rawgit.com/start-jsk/telemba/master/hangouts"/>
+  <UserPref name="baseURL" default_value="https://rawgit.com/start-jsk/telemba/master/hangouts"/>
   <!-- Dropbox hosting. Change User ID to yours when you use this.
   <UserPref name="baseURL" default_value="https://dl.dropboxusercontent.com/u/11198597/telemba/hangouts"/> -->
   <!-- for published app -->
