@@ -1,6 +1,8 @@
 Telemba
 ===================
 
+**WARNING: This project is no longer maintained. You cannot make it work anymore without MUCH effort.**
+
 Telemba is the world's cheapest telepresence robot. 
 
 [![Telemba video](http://img.youtube.com/vi/4p75EE9H2MQ/0.jpg)](http://www.youtube.com/watch?v=4p75EE9H2MQ)
